@@ -1,62 +1,62 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+# Smarthome Product Management
+This is a small, school-based project to manage smart-home products for various companies using PHP and Laravel.
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Pages
+There is going to be a **dashboard** showing statistics (the number of **Orders**, **Products and Services**) and the configuration/overview items.
 
-## About Laravel
+On the **orders-page**, one should be able to see a table of orders for customers. If a user clicks on an entry, he/she can edit or delete it and see a more detailed view below.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+On the **products- and services-page** you should be able to register new controllers and manage their services by clicking on the controllers.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+A **masterpage** should be used for all pages.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Implementation
+The following structure indicates how the Eloquent-ORM-System should be used hierarchically. 
 
-## Learning Laravel
+ - **Products**
+    - Controller-Name
+    - Serial-Number
+    - Project-Name
+    - **Services**
+        - Service-Name
+        - Serial-Number
+        - Max-Date
+        - Enabled-Flag
+ - **Orders**
+    - Order-Number
+    - Ordered-Date
+    - Reference-Name
+    - State-String
+ - **Companies**
+    - Company-Name
+    - Company-Mail
+    - _Contact-Firstname_
+    - _Contact-Lastname_
+    
+The **bold** statements are model classes and the _italic_ ones show that there is only one contact person associated with each company.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### Details for the Model
+The following tutorial is used to model the One-To-Many-Relationship regarding **Products** and **Services** (by using Eloquent):
+https://laravel.com/docs/8.x/eloquent-relationships#one-to-many
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+This should result in the ability to use the relationship in the DB.
 
-## Laravel Sponsors
+### Migrations
+The Structure from the Implementation-Part is used to infer the three needed migrations:
+1. `create_services_table`
+2. `create_products_table`
+2. `create_orders_table`
+3. `create_companies_table`
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+_Note that the order is important as products have their own services_
+ 
+Additionally, every record should have the `timestamps`-field to be able to check the modification and creation times.
 
-### Premium Partners
+### Controllers
+With the used approach, **every Model-Object except for the Services-Model** is going to have its own Controller-Object, although the Companies-Controller will only be used if no company instance has already been configured, so there is only going to be one company.
+Thus, the index-Method of the Companies' CRUD-Controller is not implemented.
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/)**
-- **[OP.GG](https://op.gg)**
+The Services-Model-Classes are displayed and managed within the Products-Controller to reduce the overall complexity.
 
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+### Seeding
+Should be done using a `Factory` for the **Orders** and the **Products** (directly including the **Services**). As there is only one company for the application, no seeder is going to be created for it.
