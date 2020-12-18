@@ -42,7 +42,7 @@ https://laravel.com/docs/8.x/eloquent-relationships#one-to-many
 This should result in the ability to use the relationship in the DB.
 
 ### Migrations
-The Structure from the Implementation-Part is used to infer the three needed migrations:
+The Structure from the Implementation-Part is used to infer the four needed migrations:
 1. `create_services_table`
 2. `create_products_table`
 2. `create_orders_table`
