@@ -53,8 +53,7 @@ _Note that the order is important as products have their own services_
 Additionally, every record should have the `timestamps`-field to be able to check the modification and creation times.
 
 ### Controllers
-With the used approach, **every Model-Object** is going to have its own Controller-Object, although the Companies-Controller will only be used if no company instance has already been configured, so there is only going to be one company.
-Thus, the index-Method of the Companies' CRUD-Controller is not implemented.
+With the used approach, **every Model-Object** is going to have its own Controller-Object, although the Companies-Controller will only be used if no company instance has already been configured, so there is only going to be one company. Thus, the index-Method of the Companies' CRUD-Controller is not implemented. Furthermore, the same Blade-View should be used for **Companies.Show**, **Companies.Edit** and **Companies.Create** in order to save time.
 
 The Controller of the Service is also quite special as the functionality of the Create-Method and the Show-Method is already going to be implemented inside the **Products.Index** Page. The **Products.Index**-Page also obsoletes the **Products.Show** as well as the **Service.Show**-Page as certain elements are going to be highlighted via JS and Bootstrap. The **Orders.Show**-Page is going to be integrated to the **Orders.Index** as well.
 
