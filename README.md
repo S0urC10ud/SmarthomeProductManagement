@@ -29,7 +29,7 @@ The following structure indicates how the Eloquent-ORM-System should be used hie
     - State-String
  - **Companies**
     - Company-Name
-    - Company-Mail
+    - Company-EMail-Address
     - _Contact-Firstname_
     - _Contact-Lastname_
     
