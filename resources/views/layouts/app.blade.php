@@ -39,13 +39,17 @@
             padding-bottom: 5em;
         }
 
-        /*Opera Fix*/
+        /*Opera Footer Fix*/
         body:before { /* thanks to Maleika (Kohoutec)*/
             content: "";
             height: 100%;
             float: left;
             width: 0;
             margin-top: -32767px; /* thank you Erik J - negate effect of float*/
+        }
+
+        body{
+            background-color: #EFEFEF !important;
         }
 
     </style>
@@ -75,12 +79,17 @@
                     src="/images/microcontroller.png"
                     alt="iot image" style="height: 3rem; margin-right: 1em;">
                 <a class="navbar-brand float-left" style="color: white;">Smarthome Product Management</a>
-
-                <ul class="navbar-nav navbar-right ml-auto">
-                    <li class="nav-item" id="dashboardSelectionSpan"><a class="nav-link">Dashboard</a></li>
-                    <li class="nav-item" id="productsAndServicesSelectionSpan"><a class="nav-link">Products and Services</a></li>
-                    <li class="nav-item" id="orderSelectionSpan"><a class="nav-link">Orders</a></li>
-                </ul>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item" id="dashboardSelectionSpan"><a class="nav-link">Dashboard</a></li>
+                        <li class="nav-item" id="productsAndServicesSelectionSpan"><a class="nav-link">Products and
+                                Services</a></li>
+                        <li class="nav-item" id="orderSelectionSpan"><a class="nav-link">Orders</a></li>
+                    </ul>
+                </div>
             </nav>@show
 
         <div class="mainContainer" style="overflow: auto">
@@ -93,7 +102,8 @@
 <div id="footer" class="font-small bg-dark navbar-fixed-bottom">
     <div class="text-center" style="color:#afafaf;">{{isset($company) ? $company->name : "Your-Company-Name"}} |
         {{Carbon\Carbon::now()->format('d.m.Y')}} |
-        <a style="text-decoration: underline; color: #afafaf;" href="{{route('imprint')}}">Legal Notice (Imprint)</a></div>
+        <a style="text-decoration: underline; color: #afafaf;" href="{{route('imprint')}}">Legal Notice (Imprint)</a>
+    </div>
 </div>
 
 </body>
