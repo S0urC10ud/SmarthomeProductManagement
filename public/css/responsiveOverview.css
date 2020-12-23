@@ -1,0 +1,43 @@
+.container {
+    background-color: white;
+    color: dimgrey;
+    padding: 4vh;
+}
+
+.contentSection {
+    margin: 0 0 0 0 !important;
+    display: grid !important;
+    place-items: center;
+    min-height: 40vh !important;
+}
+.btn{
+    cursor: pointer;
+}
+
+.listingItem {
+     width: 15rem;
+     height: 4.5rem;
+     background-color: #EDEDED;
+     color: #393939;
+     border: black solid 1px;
+     overflow-x: auto;
+     overflow-y: hidden;
+     padding-top: 2px;
+ }
+
+.listingItemTitle {
+    margin-left: .2rem;
+    font-weight: lighter;
+}
+
+.listingItemValue {
+    font-size: 1.5rem;
+    margin-left: .5rem;
+}
+
+.btn-container {
+    vertical-align: center;
+    font-size: 1.3rem !important;
+    line-height: 3.5rem;
+    border-radius: 0 !important;
+}

@@ -16,6 +16,12 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('dashboard');
 })->name('dashboard');
+
 Route::get('/imprint', function () {
     return view('imprint');
 })->name('imprint');
+
+Route::get('/orders', function () {
+    return view('orders');
+})->name('orders');
+

@@ -1,0 +1,36 @@
+#addOrderButton {
+    border-bottom: 1px dimgrey solid;
+    width: 12rem;
+    display: block;
+    font-size: 1rem !important;
+}
+
+#orderButtonContainer {
+    width: 100%;
+    display: grid;
+    place-items: center;
+    padding: 2vmin;
+    border-bottom: 1px dimgray solid;
+    margin-bottom: 2vmin;
+}
+
+.constrainedTable{
+    max-height: 35vh;
+    overflow: scroll;
+    font-size: 1.1rem !important;
+}
+
+tr{
+    cursor: pointer;
+}
+
+
+#firstUsageInfo{
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    top: 5vh;
+    left: 0;
+    right: 5vh;
+    width: 30rem;
+}

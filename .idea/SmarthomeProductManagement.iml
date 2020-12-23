@@ -117,5 +117,7 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="popper.js" level="application" />
+    <orderEntry type="library" name="@shoelace-style/shoelace" level="application" />
+    <orderEntry type="library" name="js-cookie" level="application" />
   </component>
 </module>
