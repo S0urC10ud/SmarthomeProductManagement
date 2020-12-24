@@ -4,6 +4,7 @@
 @section('customStyles')
     <link rel="stylesheet" href="/css/productsAndServices.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 @endsection
 
 @section('customScripts')
@@ -47,10 +48,10 @@
                         <span><b>External address:</b> asdf</span>
 
                         <div style="margin-top: 3rem;">
-                            <div class="btn btn-outline-primary btn-container">
+                            <div id="editController" class="btn btn-outline-primary btn-container">
                                 Edit
                             </div>
-                            <div class="btn btn-outline-danger btn-container">
+                            <div id="deleteController" class="btn btn-outline-danger btn-container">
                                 Delete
                             </div>
                         </div>
@@ -67,9 +68,59 @@
                                 <span><b>Licence Nr.:</b> 123123123</span>
                                 <span><b>Valid until:</b> 24.7.2992</span>
                             </div>
-
+                            <div class="actions">
+                                <a href="#"><i class="material-icons">edit</i></a>
+                                <a href="#"><i class="material-icons">delete</i></a>
+                            </div>
                         </div>
-
+                        <div class="controllerService">
+                            <div class="centeredImage">
+                                <span class="alignmentHelper"></span>
+                                <img src="/images/weather_service.png" alt="Weather Service Icon"/>
+                            </div>
+                            <div class="serviceDetails">
+                                <h5>Weather Service</h5>
+                                <span><b>Licence Nr.:</b> 123123123</span>
+                                <span><b>Valid until:</b> 24.7.2992</span>
+                            </div>
+                            <div class="actions">
+                                <a href="#"><i class="material-icons">edit</i></a>
+                                <a href="#"><i class="material-icons">delete</i></a>
+                            </div>
+                        </div>
+                        <div class="controllerService">
+                            <div class="centeredImage">
+                                <span class="alignmentHelper"></span>
+                                <img src="/images/weather_service.png" alt="Weather Service Icon"/>
+                            </div>
+                            <div class="serviceDetails">
+                                <h5>Weather Service</h5>
+                                <span><b>Licence Nr.:</b> 123123123</span>
+                                <span><b>Valid until:</b> 24.7.2992</span>
+                            </div>
+                            <div class="actions">
+                                <a href="#"><i class="material-icons">edit</i></a>
+                                <a href="#"><i class="material-icons">delete</i></a>
+                            </div>
+                        </div>
+                        <div class="addService controllerService">
+                            <h5 style="font-weight: bold;">Add a Service</h5>
+                            <form style="height: 14rem;">
+                                <div class="form-group">
+                                    <label for="name">Name</label>
+                                    <input id="name" name="name" type="text"/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="licenseNr">License Nr.</label>
+                                    <input id="licenseNr" name="licenseNr" type="number"/>
+                                </div>
+                                <div class="form-group" style="width: 50%; display: inline-block;">
+                                    <label for="validUntil">Valid until</label>
+                                    <input id="validUntil" name="validUntil" type="date"/>
+                                </div>
+                                <button class="btn btn-primary">Add ></button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>

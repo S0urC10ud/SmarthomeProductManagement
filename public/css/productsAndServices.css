@@ -1,13 +1,14 @@
 .controller {
-    min-width: 25rem !important;
+    width: 25rem !important;
     background: white !important;
     padding: 2rem;
     margin-top: 1rem;
 }
 
-@media only screen and (min-width: 600px) {
+@media only screen and (min-width: 700px) {
     .controller {
         margin: 1rem;
+        min-width: 25rem;
     }
 
     .container {
@@ -55,7 +56,7 @@
 }
 
 .controllerContent button:hover {
-    transform: translateY(-7px);
+    transform: translateY(-4px);
     transition-duration: .5s;
     background: #0098fe;
     box-shadow: none;
@@ -80,10 +81,15 @@
 }
 
 .controllerService {
-    height: 6rem !important;
-    display: block;
-    padding-bottom: 1rem;
+    width: 100% !important;
+    height: 8rem !important;
+    display: inline-block;
+    padding: 1rem;
     border-bottom: 2px solid #EFEFEF;
+    background-color: #eeeeee;
+    overflow: auto;
+    min-width: 18rem;
+    font-size: min(5vmin, 1rem);
 }
 
 .controllerService .centeredImage, .controllerService .serviceDetails {
@@ -101,7 +107,7 @@
 }
 
 .controllerService img {
-    width: 3em;
+    width: min(10vw, 3em);
     vertical-align: middle;
 }
 
@@ -109,4 +115,50 @@
     display: inline-block;
     height: 100%;
     vertical-align: middle;
+}
+
+.actions {
+    position: relative;
+    display: inline;
+    width: 4rem;
+    top: 0;
+    right: 0;
+    float: right;
+}
+
+.addService {
+    height: 18rem !important;
+    display: block !important;
+}
+
+.addService label {
+    display: block;
+}
+
+.addService button {
+    display: inline-block !important;
+    float: right;
+    transform: translateY(-10%);
+}
+
+@media only screen and (max-width: 1000px) {
+    .controllerServices {
+        float: none;
+        width: 100%;
+        border-left: none;
+    }
+
+    .controllerDetails {
+        width: 100%;
+    }
+
+    #editController, #deleteController {
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+
+    #deleteController {
+        top: 3rem;
+    }
 }
