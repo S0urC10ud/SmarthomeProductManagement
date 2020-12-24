@@ -64,7 +64,7 @@ Should be done using a `Factory` for the **Orders** and the **Products** (direct
 
 ### Concrete Commands
 The following commands are used to generate the models, factories, seeders and controllers:
-1. `php artisan make:model Service --migration --controller` (no seeding necessary as it is done using the *Product*)
+1. `php artisan make:model Service -mfc` (the factory is also necessary to conveniently seed the product)
 2. `php artisan make:model Product -msfc`
 3. `php artisan make:model Order -msfc`
 4. `php artisan make:model Company -msfc`
