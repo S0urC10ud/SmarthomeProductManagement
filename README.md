@@ -15,18 +15,18 @@ The following structure indicates how the Eloquent-ORM-System should be used hie
 
  - **Products**
     - Controller-Name
-    - Serial-Number
+    - Serial-Number (not necessarily unique)
     - Project-Name
     - **Services**
         - Service-Name
-        - Serial-Number
+        - Serial-Number (not necessarily unique)
         - Max-Date
         - Enabled-Flag
  - **Orders**
-    - Order-Number
+    - Order-Number (unique --> id)
     - Ordered-Date
     - Reference-Name
-    - State-String
+    - State-String (possible values: `Not yet ordered`, `Ordered`, `Finished`)
  - **Companies**
     - Company-Name
     - Company-EMail-Address
@@ -61,3 +61,10 @@ The Services-Model-Classes are displayed and managed within the Products-Control
 
 ### Seeding
 Should be done using a `Factory` for the **Orders** and the **Products** (directly including the **Services**). As there is only one company for the application, no seeder is going to be created for it.
+
+### Concrete Commands
+The following commands are used to generate the models, factories, seeders and controllers:
+1. `php artisan make:model Product -msfc` (needs to be executed before the Service Migration because of the foreign-key schema definition)
+2. `php artisan make:model Service -mfc` (the factory is also necessary to conveniently seed the product)
+3. `php artisan make:model Order -msfc`
+4. `php artisan make:model Company -msfc`
