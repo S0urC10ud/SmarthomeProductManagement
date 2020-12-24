@@ -23,12 +23,18 @@
             @foreach($formStructure->elements as $formEntry)
                 <div class="form-group">
                     <label for="{{$formEntry->getRequestName()}}">{{$formEntry->getDisplayName()}}</label>
-                    <input type="{{$formEntry->getType()}}" name="{{$formEntry->getRequestName()}}" value="{{$formEntry->getCurrentValue()}}" class="form-control" id="{{$formEntry->getRequestName()}}">
+                    <input type="{{$formEntry->getType()}}"
+                           name="{{$formEntry->getRequestName()}}"
+                           id="{{$formEntry->getRequestName()}}"
+                           value="{{$formEntry->getCurrentValue()}}"
+                           class="form-control"/>
                 </div>
             @endforeach
             <div class="row justify-content-between" style="margin:0;">
                 <button type="submit" class="btn btn-danger">Cancel</button>
-                <button type="submit" class="btn btn-primary">{{$formStructure->method == "PUT" ? "Edit" : "Create"}}</button>
+                <button type="submit" class="btn btn-primary">
+                    {{$formStructure->method == "PUT" ? "Edit" : "Create"}}
+                </button>
             </div>
         </form>
     </div>
