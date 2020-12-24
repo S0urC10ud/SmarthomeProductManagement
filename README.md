@@ -26,7 +26,7 @@ The following structure indicates how the Eloquent-ORM-System should be used hie
     - Order-Number (unique --> id)
     - Ordered-Date
     - Reference-Name
-    - State-String
+    - State-String (possible values: `Not yet ordered`, `Ordered`, `Finished`)
  - **Companies**
     - Company-Name
     - Company-EMail-Address
