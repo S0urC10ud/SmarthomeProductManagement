@@ -1,0 +1,112 @@
+.controller {
+    min-width: 25rem !important;
+    background: white !important;
+    padding: 2rem;
+    margin-top: 1rem;
+}
+
+@media only screen and (min-width: 600px) {
+    .controller {
+        margin: 1rem;
+    }
+
+    .container {
+        max-width: 90vw !important;
+    }
+}
+
+.controller h1 {
+    font-weight: lighter !important;
+}
+
+.controller span, .controllerDetails span {
+    display: block;
+    margin-top: .1rem;
+}
+
+.serviceNumber {
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-top: 1rem !important;
+}
+
+.container {
+    margin-top: 1vmin;
+}
+
+.controllerContent {
+    margin-left: .25rem;
+}
+
+.controllerContent button {
+    font-size: 1.75rem;
+    border-radius: 2rem;
+    width: 3rem;
+    height: 3rem;
+    background: #007afe;
+    color: white;
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
+    border: none;
+    transition-duration: .5s;
+    box-shadow: 0 3px 3px rgba(46, 76, 229, 0.4);
+
+}
+
+.controllerContent button:hover {
+    transform: translateY(-7px);
+    transition-duration: .5s;
+    background: #0098fe;
+    box-shadow: none;
+}
+
+.modal .btn {
+    width: 6rem;
+    margin: 1rem 1rem 1rem 0;
+    cursor: pointer;
+}
+
+.controllerDetails {
+    width: 40%;
+    display: inline-block;
+}
+
+.controllerServices {
+    width: 60%;
+    float: right;
+    border-left: 2px solid #EFEFEF;
+    padding: 1rem;
+}
+
+.controllerService {
+    height: 6rem !important;
+    display: block;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid #EFEFEF;
+}
+
+.controllerService .centeredImage, .controllerService .serviceDetails {
+    float: left;
+    display: inline;
+    height: 5rem;
+}
+
+.serviceDetails {
+    margin-left: 1.25rem;
+}
+
+.serviceDetails span {
+    display: block;
+}
+
+.controllerService img {
+    width: 3em;
+    vertical-align: middle;
+}
+
+.alignmentHelper {
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+}

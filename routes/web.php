@@ -25,3 +25,7 @@ Route::get('/orders', function () {
     return view('orders');
 })->name('orders');
 
+Route::get('/productsAndServices', function () {
+    return view('productsAndServices');
+})->name('productsAndServices');
+
