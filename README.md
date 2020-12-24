@@ -15,15 +15,15 @@ The following structure indicates how the Eloquent-ORM-System should be used hie
 
  - **Products**
     - Controller-Name
-    - Serial-Number
+    - Serial-Number (not necessarily unique)
     - Project-Name
     - **Services**
         - Service-Name
-        - Serial-Number
+        - Serial-Number (not necessarily unique)
         - Max-Date
         - Enabled-Flag
  - **Orders**
-    - Order-Number
+    - Order-Number (unique --> id)
     - Ordered-Date
     - Reference-Name
     - State-String
