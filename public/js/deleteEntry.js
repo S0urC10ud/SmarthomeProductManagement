@@ -1,4 +1,5 @@
 /**
+ * Shows a popup and deletes a specific database entry if desired
  * @param type string - only used in the user-prompt
  * @param id string or number - only used in the user-prompt
  * @param url string - the full url to delete the resource
@@ -28,7 +29,7 @@ function deleteEntry(type, id, url, successURL) {
             willOpen: () => {
                 Swal.showLoading()
             },
-        }).then((result) => {
+        }).then(() => {
             if(successURL!=null)
                 window.location.replace(successURL);
         })).catch((error)=>{
