@@ -11,7 +11,8 @@
 
 
     <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.0.0-beta.24/dist/shoelace/shoelace.css">
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.0.0-beta.24/dist/shoelace/shoelace.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <style>
@@ -55,15 +56,29 @@
             margin-top: -32767px; /* thank you Erik J - negate effect of float*/
         }
 
-        body{
+        body {
             background-color: #EFEFEF !important;
         }
 
+        .short-title {
+            display: none;
+        }
+
+        @media (max-width: 500px) {
+            .short-title {
+                display: inline-block;
+            }
+
+            .full-title {
+                display: none;
+            }
+        }
     </style>
     @section('customStyles')
     @show
 
-    <script type="module" src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.0.0-beta.24/dist/shoelace/shoelace.esm.js"></script>
+    <script type="module"
+            src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.0.0-beta.24/dist/shoelace/shoelace.esm.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
             integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
             crossorigin="anonymous"></script>
@@ -84,11 +99,19 @@
     <div id="main">
         @section('header')
             <nav class="navbar navbar-dark bg-primary navbar-expand-lg">
-                <img
-                    src="/images/microcontroller.png"
-                    alt="iot image" style="height: 3rem; margin-right: 1em;">
-                <a class="navbar-brand float-left" style="color: white;">Smarthome Product Management</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <a class="navbar-brand float-left" style="color: white;" href="{{route('dashboard')}}">
+                    <img
+                        src="/images/microcontroller.png"
+                        alt="iot image" style="height: 3rem; margin-right: 1em;">
+
+                    <span class="full-title">Smarthome Product Management</span>
+                    <span class="short-title">SPM</span>
+
+
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse"
+                        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">

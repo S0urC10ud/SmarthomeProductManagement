@@ -1,0 +1,18 @@
+.container {
+    background-color: white !important;
+    margin-top: 2rem;
+    padding: 3rem;
+    max-width: 45rem;
+    border-radius: 6px;
+}
+
+.title {
+    width: 100%;
+    border-bottom: 1px dimgrey solid;
+    margin-bottom: 2rem;
+}
+
+.buttonContainer {
+    display: grid;
+    place-items: start center;
+}

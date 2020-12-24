@@ -10,7 +10,7 @@
     <script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
     <script>
         window.onload = () => {
-            if(Cookies.get('hasSeenFirstUsageInfo')==null) {
+            if (Cookies.get('hasSeenFirstUsageInfo') == null) {
                 document.querySelector('#firstUsageInfo').querySelector('sl-alert').show();
                 Cookies.set('hasSeenFirstUsageInfo', true, {expires: 4000, sameSite: 'strict'}); //Expiry cannot be infinity --> many days in the future
             }
@@ -69,21 +69,19 @@
                 </div>
                 <div class="listingItem col-md-5 col-12 order-2">
                     <span class="listingItemTitle">Date</span><br/>
-                    <span class="listingItemValue">4.7.2002</span>
+                    <span class="listingItemValue">4.December 2002</span>
                 </div>
                 <div class="col-md-3 col-6 btn btn-outline-primary btn-container order-last order-md-3">
                     Edit
                 </div>
-
                 <div class="col-12 order-4" style="height: 20px;"></div><!--SPACING-->
-
-                <div class="listingItem col-md-5 col-12 order-5">
-                    <span class="listingItemTitle">Reference-Name</span><br/>
-                    <span class="listingItemValue">My great ref. Name</span>
-                </div>
-                <div class="listingItem col-md-3 col-12 order-6">
+                <div class="listingItem col-md-3 col-12 order-5">
                     <span class="listingItemTitle">Status</span><br/>
                     <span class="listingItemValue">Delivered</span>
+                </div>
+                <div class="listingItem col-md-5 col-12 order-6">
+                    <span class="listingItemTitle">Reference-Name</span><br/>
+                    <span class="listingItemValue">My great ref. Name</span>
                 </div>
                 <div class="col-md-3 col-6 btn btn-outline-danger btn-container order-7">
                     Delete
