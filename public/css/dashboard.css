@@ -43,7 +43,7 @@ h1 {
 }
 
 h2 {
-    font-size: min(4vmin,2rem);
+    font-size: min(4vmin, 2rem);
     color: #e3e3e3;
 }
 
@@ -52,21 +52,43 @@ h2 {
     margin-left: 2vw;
 }
 
-.fancyButton {
+#productsAndServicesViewButton, #ordersViewButton {
     position: absolute;
-    width: min(20vmin,10rem);
-    height: min(8vmin,4rem);
+    width: min(20vmin, 10rem);
+    height: min(8vmin, 4rem);
     display: inline-block;
     color: white;
     cursor: pointer;
     font-weight: bold;
-    line-height: min(8vmin,4rem);
+    line-height: min(8vmin, 4rem);
     vertical-align: center;
-    font-size: min(5vmin,2rem);
+    font-size: min(5vmin, 2rem);
     border: 3px solid black;
     transform: skewX(-10deg);
     right: 5vw;
     bottom: 5vh;
     text-align: center;
     padding-right: 10px;
+    transition-duration: .5s;
+}
+
+#productsAndServicesViewButton {
+    background: rgb(0, 135, 254) !important;
+}
+
+#ordersViewButton {
+    background-color: rgb(231, 165, 5) !important;
+}
+
+#productsAndServicesViewButton:hover {
+    background: rgb(26, 148, 255) !important;
+    transform: translateY(-2%);
+}
+
+#ordersViewButton:hover {
+    background-color: rgb(250, 179, 5) !important;
+}
+
+#productsAndServicesViewButton:hover, #ordersViewButton:hover {
+    transform: translateY(-2%);
 }

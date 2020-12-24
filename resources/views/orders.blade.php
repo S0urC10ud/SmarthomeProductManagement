@@ -83,7 +83,7 @@
                     <span class="listingItemTitle">Reference-Name</span><br/>
                     <span class="listingItemValue">My great ref. Name</span>
                 </div>
-                <div class="col-md-3 col-6 btn btn-outline-danger btn-container order-7">
+                <div class="col-md-3 col-6 btn btn-outline-danger btn-container order-7" onclick="deleteEntry('Order', 1, 'http://requestbin.net/r/1ky8p661','http://requestbin.net/r/1ky8p661'); //TODO: Change id and url">
                     Delete
                 </div>
             </div>

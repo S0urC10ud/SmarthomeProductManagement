@@ -18,7 +18,7 @@
                     <h2><b>25</b> Enabled</h2>
 
                     <a href="#">
-                        <div class="fancyButton" style="background: rgb(0,135,254)">
+                        <div id="productsAndServicesViewButton">
                             View
                         </div>
                     </a>
@@ -32,7 +32,7 @@
                     <h2><b>2</b> Finished</h2>
 
                     <a href="#">
-                        <div class="fancyButton" style="background-color: #e7a505">
+                        <div id="ordersViewButton">
                             View
                         </div>
                     </a>

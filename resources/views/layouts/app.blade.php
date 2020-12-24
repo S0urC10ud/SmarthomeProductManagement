@@ -5,7 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-
+    <meta name="csrf-token" content="{{csrf_token()}}">
 
     <title>SPM - @yield('title','')</title>
 
@@ -77,6 +77,9 @@
     @section('customStyles')
     @show
 
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script src="/js/deleteEntry.js"></script>
     <script type="module"
             src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.0.0-beta.24/dist/shoelace/shoelace.esm.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
