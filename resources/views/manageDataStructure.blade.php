@@ -23,11 +23,21 @@
             @foreach($formStructure->elements as $formEntry)
                 <div class="form-group">
                     <label for="{{$formEntry->getRequestName()}}">{{$formEntry->getDisplayName()}}</label>
-                    <input type="{{$formEntry->getType()}}"
-                           name="{{$formEntry->getRequestName()}}"
-                           id="{{$formEntry->getRequestName()}}"
-                           value="{{$formEntry->getCurrentValue()}}"
-                           class="form-control"/>
+                    @if($formEntry->getType()=="select")
+                        <select name="{{$formEntry->getRequestName()}}"
+                                id="{{$formEntry->getRequestName()}}"
+                                class="form-control">
+                            @foreach($formEntry->getPossibleValues() as $textValue)
+                                <option value="{{$textValue}}">{{$formEntry->getPrefix() . $textValue}}</option>
+                            @endforeach
+                        </select>
+                    @else
+                        <input type="{{$formEntry->getType()}}"
+                               name="{{$formEntry->getRequestName()}}"
+                               id="{{$formEntry->getRequestName()}}"
+                               value="{{$formEntry->getCurrentValue()}}"
+                               class="form-control" {{$formEntry->getIsReadOnly() ? "read-only" : ""}}/>
+                    @endif
                 </div>
             @endforeach
             <div class="row justify-content-between" style="margin:0;">

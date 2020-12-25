@@ -27,7 +27,7 @@
                 window.location.replace(`{{route('order.index')}}/${id}/edit`);
             });
             $('#deleteOrder').click(() => {
-                deleteEntry('Order', 1, `{{route('order.index')}}/${id}`, '{{route('order.index')}}');
+                deleteEntry('Order', id, `{{route('order.index')}}/${id}`, '{{route('order.index')}}');
             });
         }
 
@@ -58,7 +58,9 @@
     <div class="row contentSection" style="margin-bottom: 10px !important; margin-top: 10px !important;">
         <div class="container">
             <div id="orderButtonContainer">
+                <a href="{{route('order.create')}}">
                 <div class="btn btn-outline-primary btn-container" id="addOrderButton">Add new order</div>
+                </a>
             </div>
             <div class="constrainedTable">
                 <table class="table table-hover">
