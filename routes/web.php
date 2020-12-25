@@ -22,15 +22,21 @@ Route::get('/imprint', function () {
     return view('imprint');
 })->name('imprint');
 
-Route::get('/orders', function () {
-    return view('orders');
-})->name('orders');
 
-Route::get('/productsAndServices', function () {
+//TODO: Update routing exceptions
+Route::resource('company','App\Http\Controllers\CompanyController')->except(['index']);
+Route::resource('order','App\Http\Controllers\OrderController');
+Route::resource('product','App\Http\Controllers\ProductController');
+Route::resource('product.service','App\Http\Controllers\ServiceController');
+
+
+//TODO: Remove Demos
+
+Route::get('/productsAndServicesDemo', function () {
     return view('productsAndServices');
 })->name('productsAndServices');
 
-Route::get('/manageDataStructure', function () {
+Route::get('/manageDataStructureDemo', function () {
     $content = new stdClass();
     $content->title = "Create your Company"; //or Edit
     $content->method = "POST"; //or Edit

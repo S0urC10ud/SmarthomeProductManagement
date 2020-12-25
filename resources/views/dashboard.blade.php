@@ -17,7 +17,7 @@
                     <h2><b>25</b> Services</h2>
                     <h2><b>25</b> Enabled</h2>
 
-                    <a href="#">
+                    <a href="{{route('product.index')}}">
                         <div id="productsAndServicesViewButton">
                             View
                         </div>
@@ -31,7 +31,7 @@
                     <h1 style="font-weight: bold;">7 Orders</h1>
                     <h2><b>2</b> Finished</h2>
 
-                    <a href="#">
+                    <a href="{{route('order.index')}}">
                         <div id="ordersViewButton">
                             View
                         </div>

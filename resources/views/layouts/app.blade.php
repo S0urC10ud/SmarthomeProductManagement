@@ -119,10 +119,16 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ml-auto">
-                        <li class="nav-item" id="dashboardSelectionSpan"><a class="nav-link">Dashboard</a></li>
-                        <li class="nav-item" id="productsAndServicesSelectionSpan"><a class="nav-link">Products and
-                                Services</a></li>
-                        <li class="nav-item" id="orderSelectionSpan"><a class="nav-link">Orders</a></li>
+                        <li class="nav-item" id="dashboardSelectionSpan">
+                            <a class="nav-link" href="{{route('dashboard')}}">Dashboard</a>
+                        </li>
+                        <li class="nav-item" id="productsAndServicesSelectionSpan">
+                            <a class="nav-link" href="{{route('product.index')}}">Products and
+                                Services</a>
+                        </li>
+                        <li class="nav-item" id="orderSelectionSpan">
+                            <a class="nav-link" href="{{route('order.index')}}">Orders</a>
+                        </li>
                     </ul>
                 </div>
             </nav>@show
