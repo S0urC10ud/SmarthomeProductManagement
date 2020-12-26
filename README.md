@@ -19,7 +19,7 @@ The following structure indicates how the Eloquent-ORM-System should be used hie
     - Project-Name
     - **Services**
         - Service-Name
-        - Serial-Number (not necessarily unique)
+        - Serial-Number (not necessarily unique as multiple products could have independent Service Serial-Numbers - so the 1-n relationship is retained)
         - Max-Date
         - Enabled-Flag
  - **Orders**
