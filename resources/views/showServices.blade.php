@@ -34,12 +34,27 @@
 
     <div id="controllerServices">
         @foreach($serviceData as $service)
-            <div class="controllerService" @php
-                if($service->Enabled){echo "style=\"background-color: darkgrey !important;\"";} //could not use {{}}-Syntax because of special character encodings
-            @endphp>
+            <div class="controllerService"
+                @php
+                    if($service->Enabled){echo "style=\"background-color: darkgrey !important;\"";} //could not use {{}}-Syntax because of special character encodings
+                @endphp>
+
+                @php
+                    switch($service->ServiceName){
+                        case "Weather Service":
+                            $imagePath = "/images/weather_service.png";
+                            break;
+                        case "Air Conditioning Service":
+                            $imagePath = "/images/air_conditioning_service.png";
+                            break;
+                        default:
+                            $imagePath = "#";
+}
+                @endphp
+
                 <div class="centeredImage">
                     <span class="alignmentHelper"></span>
-                    <img src="/images/weather_service.png" alt="Weather Service Icon"/>
+                    <img src="{{$imagePath}}" alt="Weather Service Icon"/>
                 </div>
                 <div class="serviceDetails">
                     <h5>{{$service->ServiceName}}</h5>

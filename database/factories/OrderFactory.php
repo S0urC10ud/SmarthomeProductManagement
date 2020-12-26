@@ -24,7 +24,7 @@ class OrderFactory extends Factory
         return [
             'OrderedDate' => $this->faker->dateTime,
             'ReferenceName' => $this->faker->name,
-            'State' => $this->faker->shuffleArray(array('Not yet ordered', 'Ordered', 'Finished'))[0]
+            'State' => $this->faker->randomElement(['Not yet ordered', 'Ordered', 'Finished'])
         ];
     }
 }

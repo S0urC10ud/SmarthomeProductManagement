@@ -22,7 +22,7 @@ class ServiceFactory extends Factory
     public function definition()
     {
         return [
-            'ServiceName' => $this->faker->name,
+            'ServiceName' => $this->faker->randomElement(["Weather Service", "Air Conditioning Service"]),
             'LicenseNumber' => $this->faker->unique()->numberBetween(0,10000000),
             'MaxDate' => now(),
             'Enabled' => $this->faker->boolean()
