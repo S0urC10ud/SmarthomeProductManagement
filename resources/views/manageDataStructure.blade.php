@@ -37,7 +37,7 @@
                         <select name="{{$formEntry->getRequestName()}}"
                                 id="{{$formEntry->getRequestName()}}"
                                 class="form-control"
-                                {{$formEntry->getIsReadOnly() ? "readonly" : ""}}>
+                            {{$formEntry->getIsReadOnly() ? "readonly" : ""}}>
                             @foreach($formEntry->getPossibleValues() as $textValue)
                                 <option
                                     value="{{$textValue}}"
@@ -50,9 +50,12 @@
                         <input type="{{$formEntry->getType()}}"
                                name="{{$formEntry->getRequestName()}}"
                                id="{{$formEntry->getRequestName()}}"
-                               value="{{$formEntry->getCurrentValue()}}"
-                               class="form-control"
+                               @if($formEntry->getType() != "checkbox")
+                                value="{{$formEntry->getCurrentValue()}}"
+                                class='form-control'
+                               @endif
                             {{$formEntry->getIsReadOnly() ? "readonly" : ""}}
+                            {{$formEntry->getType() == "checkbox" && $formEntry->getCurrentValue()==1 ? "checked" : ""}}
                         />
                         @if($formEntry->getType() == "datetime-local")
                             <small class="form-text text-muted">Hint: Chrome provides the best interactive

@@ -149,7 +149,7 @@
             $companyName = 'Your-Company-Name';
     @endphp
     <div class="text-center" style="color:#afafaf;">{{$companyName}} |
-        {{Carbon\Carbon::now()->format('d.m.Y')}} |
+        {{Carbon\Carbon::now()->format('jS M. Y')}} |
         <a style="text-decoration: underline; color: #afafaf;" href="{{route('imprint')}}">Legal Notice (Imprint)</a>
     </div>
 </div>

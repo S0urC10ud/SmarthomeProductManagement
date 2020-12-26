@@ -35,9 +35,9 @@
     <div id="controllerServices">
         @foreach($serviceData as $service)
             <div class="controllerService"
-                @php
-                    if($service->Enabled){echo "style=\"background-color: darkgrey !important;\"";} //could not use {{}}-Syntax because of special character encodings
-                @endphp>
+                @if(!$service->Enabled)
+                    style="background-color: darkgrey !important;"
+                @endif>
 
                 @php
                     switch($service->ServiceName){
@@ -49,7 +49,7 @@
                             break;
                         default:
                             $imagePath = "#";
-}
+                }
                 @endphp
 
                 <div class="centeredImage">
@@ -58,30 +58,41 @@
                 </div>
                 <div class="serviceDetails">
                     <h5>{{$service->ServiceName}}</h5>
-                    <span><b>Enabled:</b> {{$service->Enabled ? "false" : "true"}}</span>
+                    <span><b>Enabled:</b> {{$service->Enabled ? 'true' : 'false'}}</span>
                     <span><b>Licence Nr.:</b> {{$service->LicenseNumber}}</span>
                     <span><b>Valid until:</b> {{$service->MaxDate}}</span>
                 </div>
                 <div class="actions">
                     <a href="{{route('service.edit',$service->id)}}"><i class="material-icons">edit</i></a>
-                    <a href="{{route('service.destroy',$service->id)}}"><i class="material-icons">delete</i></a>
+                    <div onclick="deleteEntry('Service',{{$service->id}},'{{route('service.destroy',$service->id)}}',
+                        '{{route('product.index')}}');"
+                         style="cursor: pointer; color: #0056b3;">
+                        <i class="material-icons">delete</i>
+                    </div>
                 </div>
             </div>
         @endforeach
         <div class="addService controllerService">
             <h5 style="font-weight: bold;">Add a Service</h5>
-            <form style="height: 14rem;">
+            <form style="height: 14rem;" action="{{route('product.service.store', $productData->id)}}" method="POST">
+                @csrf
+                <input type="hidden" name="ProductId" value="{{$productData->id}}">
                 <div class="form-group">
                     <label for="name">Name</label>
-                    <input id="name" name="name" type="text" class="form-control"/>
+                    <select name="ServiceName" id="name" class="form-control">
+                        <option value="Weather Service">Weather Service</option>
+                        <option value="Air Conditioning Service">Air Conditioning Service</option>
+                    </select>
                 </div>
                 <div class="form-group">
                     <label for="licenseNr">License Nr.</label>
-                    <input id="licenseNr" name="licenseNr" type="number" class="form-control"/>
+                    <input id="licenseNr" name="LicenseNr" type="number" class="form-control"/>
                 </div>
                 <div class="form-group" style="width: 50%; display: inline-block;">
                     <label for="validUntil">Valid until</label>
-                    <input id="validUntil" name="validUntil" type="date" class="form-control"/>
+                    <input id="validUntil" name="ValidUntil" type="datetime-local" class="form-control"/>
+                    <small class="form-text text-muted">Hint: Chrome provides the best interactive
+                        datetime-chooser!</small>
                 </div>
                 <button class="btn btn-primary">Add ></button>
             </form>

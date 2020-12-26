@@ -9,7 +9,12 @@ class Service extends Model
 {
     use HasFactory;
 
-    public function products(){
+    const TYPES = ["Weather Service", "Air Conditioning Service"];
+
+
+    public function products()
+    {
         return $this->belongsToMany(Product::class);
     }
 }
+
