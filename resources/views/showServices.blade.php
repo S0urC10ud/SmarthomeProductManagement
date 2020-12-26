@@ -1,6 +1,13 @@
+@php
+    //Accept incoming standardized format and then reformat
+    function getFormattedDate($product){
+        return Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $product->RegisteredOn)->format('jS M. Y H:i:s');
+    }
+@endphp
+
 <div class="modal-header">
     <h5 class="modal-title" id="dialogTitle">Details
-        of {{$productData->SerialNumber}}</h5>
+        of {{$productData->ControllerName}}</h5>
     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
         <span aria-hidden="true">&times;</span>
     </button>
@@ -48,15 +55,15 @@
             <form style="height: 14rem;">
                 <div class="form-group">
                     <label for="name">Name</label>
-                    <input id="name" name="name" type="text"/>
+                    <input id="name" name="name" type="text" class="form-control"/>
                 </div>
                 <div class="form-group">
                     <label for="licenseNr">License Nr.</label>
-                    <input id="licenseNr" name="licenseNr" type="number"/>
+                    <input id="licenseNr" name="licenseNr" type="number" class="form-control"/>
                 </div>
                 <div class="form-group" style="width: 50%; display: inline-block;">
                     <label for="validUntil">Valid until</label>
-                    <input id="validUntil" name="validUntil" type="date"/>
+                    <input id="validUntil" name="validUntil" type="date" class="form-control"/>
                 </div>
                 <button class="btn btn-primary">Add ></button>
             </form>

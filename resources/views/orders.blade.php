@@ -9,6 +9,8 @@
 @section('customScripts')
     <script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
     <script>
+        var firstSelection = true;
+
         /***
          * Updates the lower selected item area
          * @param id number
@@ -29,6 +31,10 @@
             $('#deleteOrder').click(() => {
                 deleteEntry('Order', id, `{{route('order.index')}}/${id}`, '{{route('order.index')}}');
             });
+            if(firstSelection){
+                $('#editOrder, #deleteOrder').attr("disabled", false);
+                firstSelection = false;
+            }
         }
 
         window.onload = () => {
@@ -106,9 +112,9 @@
                     <span class="listingItemTitle">Ordered on</span><br/>
                     <span class="listingItemValue" id="orderDate"></span>
                 </div>
-                <div class="col-md-3 col-6 btn btn-outline-primary btn-container order-last order-md-3" id="editOrder">
+                <button class="col-md-3 col-6 btn btn-outline-primary btn-container order-last order-md-3" id="editOrder" disabled>
                     Edit
-                </div>
+                </button>
                 <div class="col-12 order-4" style="height: 20px;"></div><!--SPACING-->
                 <div class="listingItem col-md-3 col-12 order-5">
                     <span class="listingItemTitle">Status</span><br/>
@@ -118,9 +124,9 @@
                     <span class="listingItemTitle">Reference-Name</span><br/>
                     <span class="listingItemValue" id="orderRefName"></span>
                 </div>
-                <div class="col-md-3 col-6 btn btn-outline-danger btn-container order-7" id="deleteOrder">
+                <button class="col-md-3 col-6 btn btn-outline-danger btn-container order-7" id="deleteOrder" disabled>
                     Delete
-                </div>
+                </button>
             </div>
         </div>
     </div>

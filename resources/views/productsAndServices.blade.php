@@ -5,6 +5,42 @@
     <link rel="stylesheet" href="/css/productsAndServices.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="/css/loader.css">
+@endsection
+
+@section('customScripts')
+    <script>
+        function resetLoadingSpinner() {
+            $("#modalContent").html("" +
+                "<div style=\"display: grid; place-items: center;\">\n" +
+                "<div data-loader=\"circle\" style=\"border-color: dodgerblue;\"></div>\n" +
+                "</div>");
+        }
+
+        function setModalContents(productId) {
+            axios.get(`{{route('product.index')}}/${productId}/service`)
+                .then((response) => {
+                    $("#modalContent").html(response.data);
+                }).catch((err) => {
+                    console.error(err);
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Something went wrong fetching the API!',
+                    }).then(() => {
+                        $("#detailsModal").modal("hide");
+                    });
+            });
+        }
+
+        $(document).on('hide.bs.modal', "#detailsModal", function () {
+            resetLoadingSpinner();
+        });
+
+        window.onload = () => {
+            resetLoadingSpinner();
+        }
+    </script>
 @endsection
 
 @php
@@ -27,10 +63,16 @@
                         <span>Project: {{$product->ProjectName}}</span>
                         <span>External address: {{$product->ExternalAddress}}</span>
                         <span class="serviceNumber">{{count($product->services)}} Services</span>
-                        <button data-toggle="modal" data-target="#detailsModal"><i class="fa fa-eye"></i></button>
+                        <button onclick="setModalContents({{$product->id}})" data-toggle="modal"
+                                data-target="#detailsModal"><i class="fa fa-eye"></i></button>
                     </div>
                 </div>
             @endforeach
+            <div class="col-md-3 controller" style="display: grid; place-items: center; height:16rem;">
+                <a class="btn btn-outline-primary btn-container" href="{{route('product.create')}}">
+                    Add a new product
+                </a>
+            </div>
         </div>
     </div>
 
@@ -39,7 +81,7 @@
     <div class="modal fade" id="detailsModal" tabindex="-1" role="dialog" aria-labelledby="dialogTitle"
          aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
+            <div class="modal-content" id="modalContent">
 
             </div>
         </div>

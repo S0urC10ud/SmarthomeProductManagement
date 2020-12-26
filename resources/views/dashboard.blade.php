@@ -14,9 +14,9 @@
                 <div class="col-6" id="productsContainer">
                     <img src="/images/products_and_services.jpg" alt="products_and_services image"/>
                     <div class="statistics">
-                        <h1 style="font-weight: bold;">12 Products</h1>
-                        <h2><b>25</b> Services</h2>
-                        <h2><b>25</b> Enabled</h2>
+                        <h1 style="font-weight: bold;">{{\App\Models\Product::count()}} Products</h1>
+                        <h2><b>{{\App\Models\Service::count()}}</b> Services</h2>
+                        <h2><b>{{\App\Models\Service::where('Enabled',true)->count()}}</b> Enabled</h2>
 
                         <a href="{{route('product.index')}}">
                             <div id="productsAndServicesViewButton">
@@ -29,8 +29,10 @@
                     <img src="/images/orders.jpg" alt="orders image"/>
 
                     <div class="statistics">
-                        <h1 style="font-weight: bold;">7 Orders</h1>
-                        <h2><b>2</b> Finished</h2>
+                        <h1 style="font-weight: bold;">{{\App\Models\Order::count()}} Orders</h1>
+                        <h2><b>{{\App\Models\Order::where('State','Not yet ordered')->count()}}</b> Not yet ordered</h2>
+                        <h2><b>{{\App\Models\Order::where('State','Ordered')->count()}}</b> Ordered</h2>
+                        <h2><b>{{\App\Models\Order::where('State','Finished')->count()}}</b> Finished</h2>
 
                         <a href="{{route('order.index')}}">
                             <div id="ordersViewButton">

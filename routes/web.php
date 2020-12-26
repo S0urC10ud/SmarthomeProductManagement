@@ -29,7 +29,7 @@ Route::get('/imprint', function () {
 Route::resource('company','App\Http\Controllers\CompanyController')->except(['index']);
 Route::resource('order','App\Http\Controllers\OrderController');
 Route::resource('product','App\Http\Controllers\ProductController');
-Route::resource('product.service','App\Http\Controllers\ServiceController')->except(['index']);
+Route::resource('product.service','App\Http\Controllers\ServiceController')->shallow()->except(['show']);
 
 
 //TODO: Remove Demos

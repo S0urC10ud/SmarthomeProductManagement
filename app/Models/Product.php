@@ -10,6 +10,6 @@ class Product extends Model
     use HasFactory;
 
     public function services(){
-        return $this->hasMany(Service::class);
+        return $this->belongsToMany(Service::class);
     }
 }
