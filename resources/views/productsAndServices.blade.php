@@ -11,9 +11,8 @@
 @section('customScripts')
     <script>
         function resetLoadingSpinner() {
-            $("#modalContent").html("" +
-                "<div style=\"display: grid; place-items: center;\">\n" +
-                "<div data-loader=\"circle\" style=\"border-color: dodgerblue;\"></div>\n" +
+            $("#modalContent").html("<div style=\"display: grid; place-items: center;\">\n" +
+                "<div class=\"lds-ring\"><div></div><div></div><div></div><div></div></div>\n" + //pure html spinner with css effects
                 "</div>");
         }
 
@@ -22,19 +21,21 @@
                 .then((response) => {
                     $("#modalContent").html(response.data);
                 }).catch((err) => {
-                    console.error(err);
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Oops...',
-                        text: 'Something went wrong fetching the API!',
-                    }).then(() => {
-                        $("#detailsModal").modal("hide");
-                    });
+                console.error(err);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Something went wrong fetching the API!',
+                }).then(() => {
+                    $("#detailsModal").modal("hide");
+                });
             });
         }
 
         $(document).on('hide.bs.modal', "#detailsModal", function () {
-            resetLoadingSpinner();
+            setTimeout(() => {
+                resetLoadingSpinner();
+            }, 500);
         });
 
         window.onload = () => {
@@ -81,10 +82,7 @@
     <div class="modal fade" id="detailsModal" tabindex="-1" role="dialog" aria-labelledby="dialogTitle"
          aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content" id="modalContent">
-
-            </div>
+            <div class="modal-content" id="modalContent"></div>
         </div>
     </div>
-
 @endsection

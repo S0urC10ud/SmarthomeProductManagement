@@ -64,11 +64,11 @@
 
                         <div class="col-12 order-4" style="height: 20px;"></div><!--SPACING-->
 
-                        <div class="listingItem col-md-3 col-12 order-5">
+                        <div class="listingItem col-md-4 col-12 order-5">
                             <span class="listingItemTitle">Contact Firstname</span><br/>
                             <span class="listingItemValue">{{$companyData->ContactFirstname}}</span>
                         </div>
-                        <div class="listingItem col-md-5 col-12 order-6">
+                        <div class="listingItem col-md-4 col-12 order-6">
                             <span class="listingItemTitle">Contact Lastname</span><br/>
                             <span class="listingItemValue">{{$companyData->ContactLastname}}</span>
                         </div>

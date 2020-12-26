@@ -20,27 +20,30 @@
         <span><b>External address:</b> {{$productData->ExternalAddress}}</span>
 
         <div style="margin-top: 3rem;">
-            <a id="editController" class="btn btn-outline-primary btn-container" href="{{route('product.edit',$productData->id)}}">
+            <a id="editController" class="btn btn-outline-primary btn-container"
+               href="{{route('product.edit',$productData->id)}}">
                 Edit
             </a>
             <div id="deleteController"
                  class="btn btn-outline-danger btn-container"
                  onclick="deleteEntry('Product',{{$productData->id}},'{{route('product.destroy',$productData->id)}}','{{route('product.index')}}');">
-            Delete
+                Delete
             </div>
         </div>
     </div>
 
     <div id="controllerServices">
         @foreach($serviceData as $service)
-            <div class="controllerService">
+            <div class="controllerService" @php
+                if($service->Enabled){echo "style=\"background-color: darkgrey !important;\"";} //could not use {{}}-Syntax because of special character encodings
+            @endphp>
                 <div class="centeredImage">
                     <span class="alignmentHelper"></span>
                     <img src="/images/weather_service.png" alt="Weather Service Icon"/>
                 </div>
                 <div class="serviceDetails">
-                    <h5>Weather Service</h5>
-                    <span><b>Enabled:</b> {{$service->Enabled}}</span>
+                    <h5>{{$service->ServiceName}}</h5>
+                    <span><b>Enabled:</b> {{$service->Enabled ? "false" : "true"}}</span>
                     <span><b>Licence Nr.:</b> {{$service->LicenseNumber}}</span>
                     <span><b>Valid until:</b> {{$service->MaxDate}}</span>
                 </div>
