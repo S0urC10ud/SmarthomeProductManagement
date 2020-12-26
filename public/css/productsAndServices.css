@@ -126,6 +126,10 @@
     display: block !important;
 }
 
+.addService h5{
+    font-weight: bold;
+}
+
 .addService label {
     display: block;
 }
@@ -134,6 +138,17 @@
     display: inline-block !important;
     float: right;
     transform: translateY(-10%);
+}
+
+.serviceHeaderLine {
+    display: inline;
+}
+
+.deleteServiceIcon {
+    cursor: pointer;
+    color: #007bff;
+    float: right;
+    display: inline-block;
 }
 
 @media only screen and (max-width: 1000px) {
@@ -145,12 +160,6 @@
 
     .controllerDetails {
         width: 100%;
-    }
-
-    #editController, #deleteController {
-        position: absolute;
-        right: 0;
-        top: 0;
     }
 
     #deleteController {

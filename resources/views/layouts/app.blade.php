@@ -73,6 +73,11 @@
                 display: none;
             }
         }
+
+        .active {
+            font-weight: bold;
+            color: white !important;
+        }
     </style>
     @section('customStyles')
     @show
@@ -119,15 +124,21 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ml-auto">
-                        <li class="nav-item" id="dashboardSelectionSpan">
-                            <a class="nav-link" href="{{route('dashboard')}}">Dashboard</a>
+                        <li class="nav-item"
+                            id="dashboardSelectionSpan">
+                            <a class="nav-link {{ Request::is('/') ? 'active' : '' }}"
+                               href="{{route('dashboard')}}">Dashboard</a>
                         </li>
-                        <li class="nav-item" id="productsAndServicesSelectionSpan">
-                            <a class="nav-link" href="{{route('product.index')}}">Products and
+                        <li class="nav-item"
+                            id="productsAndServicesSelectionSpan">
+                            <a class="nav-link {{ Request::is('product') ? 'active' : '' }}"
+                               href="{{route('product.index')}}">Products and
                                 Services</a>
                         </li>
-                        <li class="nav-item" id="orderSelectionSpan">
-                            <a class="nav-link" href="{{route('order.index')}}">Orders</a>
+                        <li class="nav-item"
+                            id="orderSelectionSpan">
+                            <a class="nav-link {{ Request::is('order') ? 'active' : '' }}"
+                               href="{{route('order.index')}}">Orders</a>
                         </li>
                     </ul>
                 </div>

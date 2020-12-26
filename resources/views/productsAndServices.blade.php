@@ -69,7 +69,7 @@
                     </div>
                 </div>
             @endforeach
-            <div class="col-md-3 controller" style="display: grid; place-items: center; height:16rem;">
+            <div class="col-md-3 controller" style="display: grid; place-items: center; height:18rem;">
                 <a class="btn btn-outline-primary btn-container" href="{{route('product.create')}}">
                     Add a new product
                 </a>

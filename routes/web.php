@@ -1,10 +1,11 @@
 <?php
 
+use App\Http\Controllers\ProductController;
 use App\Models\Company;
 use App\Models\FormEntry;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
-
+use Illuminate\Http\Request;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -24,24 +25,11 @@ Route::get('/imprint', function () {
     return view('imprint');
 })->name('imprint');
 
+Route::post('/product/addService', [ProductController::class, 'addService'])->name('product.addService');
+
 
 //TODO: Update routing exceptions
 Route::resource('company','App\Http\Controllers\CompanyController')->except(['index']);
 Route::resource('order','App\Http\Controllers\OrderController');
 Route::resource('product','App\Http\Controllers\ProductController');
 Route::resource('product.service','App\Http\Controllers\ServiceController')->shallow()->except(['show']);
-
-
-//TODO: Remove Demos
-
-Route::get('/manageDataStructureDemo', function () {
-    $content = new stdClass();
-    $content->title = "Create your Company"; //or Edit
-    $content->method = "POST"; //or Edit
-    $content->url = route('orders');
-
-    $entry1 = new FormEntry("Company Name", "companyName", "text","asdf");
-    $content->elements = array($entry1);
-
-    return view('manageDataStructure')->with('formStructure',$content);
-})->name('manageDataStructure');

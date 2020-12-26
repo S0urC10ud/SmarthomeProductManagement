@@ -73,7 +73,7 @@
                             <span class="listingItemValue">{{$companyData->ContactLastname}}</span>
                         </div>
                         <div class="col-md-3 col-6 btn btn-outline-danger btn-container order-7"
-                             onclick="deleteEntry('your Company information','','{{route('company.destroy',$companyData->id)}}','{{route('dashboard')}}');">
+                             onclick="deleteEntry('all of your Company information','','{{route('company.destroy',$companyData->id)}}','{{route('dashboard')}}');">
                             Delete
                         </div>
                     </div>

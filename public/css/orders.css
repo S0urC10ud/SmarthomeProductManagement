@@ -5,13 +5,16 @@
     font-size: 1rem !important;
 }
 
+.container{
+    padding: 2.5vh !important;
+}
+
 #orderButtonContainer {
     width: 100%;
     display: grid;
     place-items: center;
-    padding: 2vmin;
+    padding: .5vmin;
     border-bottom: 1px dimgray solid;
-    margin-bottom: 2vmin;
 }
 
 .constrainedTable{

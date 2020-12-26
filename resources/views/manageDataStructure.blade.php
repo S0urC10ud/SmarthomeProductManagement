@@ -67,7 +67,7 @@
             <div class="row justify-content-between" style="margin:0;">
                 <button
                     class="btn btn-danger"
-                    onclick="window.history.go(-1); return false;">
+                    onclick="location.href=document.referrer;">
                     Cancel
                 </button>
                 <button type="submit" class="btn btn-primary">

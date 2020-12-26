@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Company;
 use App\Models\FormEntry;
+use App\Models\Order;
+use App\Models\Product;
+use App\Models\Service;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -126,7 +129,13 @@ class CompanyController extends Controller
 
     public function destroy(Company $company)
     {
-        $company->delete();
+        //Remove all company data - there can only be one company - so delete all table contents:
+        DB::statement('SET FOREIGN_KEY_CHECKS=0;'); //is needed for simple and efficient truncation
+        Product::truncate();
+        Service::truncate();
+        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+        Order::truncate();
+        Company::truncate();
         return response()->json([], 202);
     }
 

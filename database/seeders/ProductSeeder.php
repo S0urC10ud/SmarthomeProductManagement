@@ -17,6 +17,6 @@ class ProductSeeder extends Seeder
     {
         Product::factory()
             ->has(Service::factory()->count(2))
-            ->count(6)->create();
+            ->count(5)->create();
     }
 }
