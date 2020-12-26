@@ -26,9 +26,14 @@
                     @if($formEntry->getType()=="select")
                         <select name="{{$formEntry->getRequestName()}}"
                                 id="{{$formEntry->getRequestName()}}"
-                                class="form-control">
+                                class="form-control"
+                                {{$formEntry->getIsReadOnly() ? "readonly" : ""}}>
                             @foreach($formEntry->getPossibleValues() as $textValue)
-                                <option value="{{$textValue}}">{{$formEntry->getPrefix() . $textValue}}</option>
+                                <option
+                                    value="{{$textValue}}"
+                                    {{$textValue == $formEntry->getCurrentValue() ? "selected" : "" }}>
+                                    {{$formEntry->getPrefix() . $textValue}}
+                                </option>
                             @endforeach
                         </select>
                     @else
@@ -36,7 +41,13 @@
                                name="{{$formEntry->getRequestName()}}"
                                id="{{$formEntry->getRequestName()}}"
                                value="{{$formEntry->getCurrentValue()}}"
-                               class="form-control" {{$formEntry->getIsReadOnly() ? "read-only" : ""}}/>
+                               class="form-control"
+                            {{$formEntry->getIsReadOnly() ? "readonly" : ""}}
+                        />
+                        @if($formEntry->getType() == "datetime-local")
+                            <small class="form-text text-muted">Hint: Chrome provides the best interactive
+                                datetime-chooser!</small>
+                        @endif
                     @endif
                 </div>
             @endforeach
