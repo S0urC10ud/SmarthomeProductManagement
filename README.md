@@ -68,3 +68,5 @@ The following commands are used to generate the models, factories, seeders and c
 2. `php artisan make:model Service -mfc` (the factory is also necessary to conveniently seed the product)
 3. `php artisan make:model Order -msfc`
 4. `php artisan make:model Company -msfc`
+
+The Company-Seeder only creates exactly one instance of a company which is an exception.
