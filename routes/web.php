@@ -1,6 +1,8 @@
 <?php
 
+use App\Models\Company;
 use App\Models\FormEntry;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('dashboard');
+    return view('dashboard')->with('companyData', Company::first());
 })->name('dashboard');
 
 Route::get('/imprint', function () {

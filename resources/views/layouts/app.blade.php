@@ -141,7 +141,14 @@
 </div>
 
 <div id="footer" class="font-small bg-dark navbar-fixed-bottom">
-    <div class="text-center" style="color:#afafaf;">{{isset($company) ? $company->name : "Your-Company-Name"}} |
+    @php
+        $company = \App\Models\Company::first();
+        if($company!=null)
+            $companyName = $company->Name;
+        else
+            $companyName = 'Your-Company-Name';
+    @endphp
+    <div class="text-center" style="color:#afafaf;">{{$companyName}} |
         {{Carbon\Carbon::now()->format('d.m.Y')}} |
         <a style="text-decoration: underline; color: #afafaf;" href="{{route('imprint')}}">Legal Notice (Imprint)</a>
     </div>

@@ -59,7 +59,7 @@
         <div class="container">
             <div id="orderButtonContainer">
                 <a href="{{route('order.create')}}">
-                <div class="btn btn-outline-primary btn-container" id="addOrderButton">Add new order</div>
+                <div class="btn btn-outline-primary btn-container" id="addOrderButton">Add a new order</div>
                 </a>
             </div>
             <div class="constrainedTable">

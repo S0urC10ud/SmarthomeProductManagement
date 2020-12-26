@@ -6,6 +6,17 @@
 @endsection
 
 @section('customScripts')
+    @if($formStructure->previouslyFailed)
+        <script>
+            window.onload = () => {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Something went wrong! Make sure all values are specified and correctly formatted!'
+                });
+            }
+        </script>
+    @endif
 @endsection
 
 @section('content')
@@ -13,7 +24,6 @@
         <div class="title">
             <h3 style="color: dimgrey">{{$formStructure->title}}</h3>
         </div>
-
         <form method="POST" action="{{$formStructure->url}}">
             @csrf
             @if($formStructure->method == "PUT")
@@ -52,7 +62,11 @@
                 </div>
             @endforeach
             <div class="row justify-content-between" style="margin:0;">
-                <button type="submit" class="btn btn-danger">Cancel</button>
+                <button
+                    class="btn btn-danger"
+                    onclick="window.history.go(-1); return false;">
+                    Cancel
+                </button>
                 <button type="submit" class="btn btn-primary">
                     {{$formStructure->method == "PUT" ? "Edit" : "Create"}}
                 </button>

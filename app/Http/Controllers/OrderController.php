@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\FormEntry;
 use App\Models\Order;
 use App\Models\Product;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use stdClass;
@@ -33,12 +34,13 @@ class OrderController extends Controller
         return view('orders')->with('orderData', Order::all());
     }
 
-    public function create()
+    public function create(bool $previouslyFailed = false)
     {
         $content = new stdClass();
         $content->title = "Create an Order";
         $content->method = "POST";
         $content->url = route('order.store');
+        $content->previouslyFailed = $previouslyFailed;
 
         $possibleProducts = $this->getPossibleProducts();
 
@@ -84,17 +86,24 @@ class OrderController extends Controller
         }
 
         $order->State = $request->orderState;
-        $order->save();
+        try {
+            $order->save();
+        } catch (QueryException $e) {
+            return $this->create(true);
+        }
+
         return redirect()->route('order.index');
     }
 
-    public function edit(Order $order)
+    public function edit(Order $order, bool $previouslyFailed = false)
     {
         $content = new stdClass();
         $content->title = "Edit an Order";
         $content->method = "PUT";
         $content->url = route('order.update', $order->id);
         $possibleProducts = $this->getPossibleProducts();
+        $content->previouslyFailed = $previouslyFailed;
+
         $content->elements = array(
             new FormEntry(
                 "Order-Number",
@@ -138,15 +147,17 @@ class OrderController extends Controller
         $order->State = $request->orderState;
 
         if (Order::where("id", $order->id)->exists()) {
-            $order->save();
+            try {
+                $order->save();
+            } catch (QueryException $e) {
+                return $this->edit($order, true);
+            }
             DB::commit();
         } else {
             DB::rollBack();
         }
         return redirect()->route('order.index');
     }
-
-    //TODO: On update check if still exists
 
     public function destroy(Order $order)
     {
