@@ -17,7 +17,7 @@ class CreateServicesTable extends Migration
             $table->id();
             $table->bigInteger('product_id')->unsigned();
             $table->string("ServiceName");
-            $table->unsignedInteger("SerialNumber");
+            $table->unsignedInteger("LicenseNumber");
             $table->dateTime("MaxDate");
             $table->boolean("Enabled");
 

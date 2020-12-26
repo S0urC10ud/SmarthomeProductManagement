@@ -7,17 +7,12 @@
 
 @media only screen and (min-width: 700px) {
     .controller {
-        margin: 1rem;
         min-width: 25rem;
     }
 
     .container {
         max-width: 90vw !important;
     }
-}
-
-.controller h1 {
-    font-weight: lighter !important;
 }
 
 .controller span, .controllerDetails span {
@@ -73,7 +68,7 @@
     display: inline-block;
 }
 
-.controllerServices {
+#controllerServices {
     width: 60%;
     float: right;
     border-left: 2px solid #EFEFEF;
@@ -142,7 +137,7 @@
 }
 
 @media only screen and (max-width: 1000px) {
-    .controllerServices {
+    #controllerServices {
         float: none;
         width: 100%;
         border-left: none;

@@ -24,7 +24,9 @@ class ProductFactory extends Factory
         return [
             'ControllerName' => $this->faker->name,
             'ProjectName' => $this->faker->name,
-            'SerialNumber' => $this->faker->unique()->numberBetween(0,10000000)
+            'SerialNumber' => $this->faker->unique()->numberBetween(0, 10000000),
+            'RegisteredOn' => $this->faker->dateTime,
+            'ExternalAddress' => $this->faker->ipv4
         ];
     }
 }

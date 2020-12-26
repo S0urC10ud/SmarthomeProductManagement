@@ -23,7 +23,7 @@ class ServiceFactory extends Factory
     {
         return [
             'ServiceName' => $this->faker->name,
-            'SerialNumber' => $this->faker->unique()->numberBetween(0,10000000),
+            'LicenseNumber' => $this->faker->unique()->numberBetween(0,10000000),
             'MaxDate' => now(),
             'Enabled' => $this->faker->boolean()
         ];

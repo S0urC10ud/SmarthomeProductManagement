@@ -5,24 +5,6 @@
 @section('customStyles')
     <link rel="stylesheet" href="/css/dashboard.css"/>
     <link rel="stylesheet" href="/css/responsiveOverview.css"/>
-    <style>
-        .firstSetupContainer h3 {
-            color: #585858;
-            margin-bottom: 2rem;
-            display: block;
-            text-align: center;
-        }
-
-        .firstSetupContainer .btn {
-            max-width: 10rem;
-            margin-top: 2rem;
-        }
-
-        .centeredContent {
-            max-width: 40rem;
-            border-radius: 40px !important;
-        }
-    </style>
 @endsection
 
 @section('content')

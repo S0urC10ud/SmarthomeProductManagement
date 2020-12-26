@@ -29,14 +29,10 @@ Route::get('/imprint', function () {
 Route::resource('company','App\Http\Controllers\CompanyController')->except(['index']);
 Route::resource('order','App\Http\Controllers\OrderController');
 Route::resource('product','App\Http\Controllers\ProductController');
-Route::resource('product.service','App\Http\Controllers\ServiceController');
+Route::resource('product.service','App\Http\Controllers\ServiceController')->except(['index']);
 
 
 //TODO: Remove Demos
-
-Route::get('/productsAndServicesDemo', function () {
-    return view('productsAndServices');
-})->name('productsAndServices');
 
 Route::get('/manageDataStructureDemo', function () {
     $content = new stdClass();

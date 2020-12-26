@@ -92,3 +92,20 @@ h2 {
 #productsAndServicesViewButton:hover, #ordersViewButton:hover {
     transform: translateY(-2%);
 }
+
+.firstSetupContainer h3 {
+    color: #585858;
+    margin-bottom: 2rem;
+    display: block;
+    text-align: center;
+}
+
+.firstSetupContainer .btn {
+    max-width: 10rem;
+    margin-top: 2rem;
+}
+
+.centeredContent {
+    max-width: 40rem;
+    border-radius: 40px !important;
+}
