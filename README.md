@@ -106,4 +106,4 @@ The Company-Seeder only creates exactly one instance of a company which is an ex
 ### Naming conventions
 Should be applied from the following link: https://webdevetc.com/blog/laravel-naming-conventions/#section_table-columns-names
 
-For instance: Lower snake_case is used for accessing Model Columns.
+For instance: Lower _snake_case_ is used for accessing Model Columns. However, for names in forms _camelCase_ should be used.
