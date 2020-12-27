@@ -70,6 +70,8 @@ The Controller of the Service is also quite special as the functionality of the 
 
 The Services-Model-Classes are displayed and managed within the Products-Controller to reduce the overall complexity.
 
+### Creating and editing Entries
+Since creating and editing entries is very similar for all Models, a blade-View called DataStructure-Manager "**manageDataStructure.blade.php**" should be created to provide simple access and avoid code reuse.
 ### Seeding
 Should be done using a `Factory` for the **Orders** and the **Products** (directly including the **Services**). As there is only one company for the application, no seeder is going to be created for it.
 
@@ -81,3 +83,8 @@ The following commands are used to generate the models, factories, seeders and c
 4. `php artisan make:model Company -msfc`
 
 The Company-Seeder only creates exactly one instance of a company which is an exception.
+
+### Naming conventions
+Should be applied from the following link: https://webdevetc.com/blog/laravel-naming-conventions/#section_table-columns-names
+
+For instance: Lower snake_case is used for accessing Model Columns.
