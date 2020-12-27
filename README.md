@@ -30,6 +30,9 @@ Route::resource('product.service','App\Http\Controllers\ServiceController')->exc
 ```
 The relationship inside the _product.service_ route is modeled in a nested way to provide an easier way for accessing the product_id in the ServiceController. 
 
+## Design-Adaptations for adding Services
+Since services can directly be added to Products/Controllers in the Details-View, a combobox is obsolete regarding the implemented design.
+
 ## Implementation
 The following structure indicates how the Eloquent-ORM-System should be used hierarchically. 
 

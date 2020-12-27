@@ -68,7 +68,7 @@ class ProductController extends Controller
                 now(),
             ),
             new FormEntry(
-                "Project Name",
+                "Project Name/Reference Name",
                 "projectName",
                 "text"
             ),
