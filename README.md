@@ -10,6 +10,25 @@ On the **products- and services-page** you should be able to register new contro
 
 A **masterpage** should be used for all pages containing a logo and name with a link to the dashboard and a few nav-items on the right hand side, which collapse on smaller screens into an iteractive menu.
 
+### Routing
+As the described UI offers quite a few direct access methods, the routing specifications need to be adapted/restrained.
+
+To provide a  quick overview over which functionalities are directly embedded in the UI the following section from the file web.php is included (which directly resulted after the planning phase):
+
+```php
+Route::get('/', function () {
+    return view('dashboard')->with('companyData', Company::first());
+})->name('dashboard');
+Route::get('/imprint', function () {
+    return view('imprint');
+})->name('imprint');
+Route::post('/product/addService', [ProductController::class, 'addService'])->name('product.addService');
+Route::resource('company','App\Http\Controllers\CompanyController')->except(['index','show']);
+Route::resource('order','App\Http\Controllers\OrderController')->except(['show']);
+Route::resource('product','App\Http\Controllers\ProductController')->except(['show']);
+Route::resource('product.service','App\Http\Controllers\ServiceController')->shallow()->except(['create, show']);
+```
+
 ## Implementation
 The following structure indicates how the Eloquent-ORM-System should be used hierarchically. 
 

@@ -26,10 +26,7 @@ Route::get('/imprint', function () {
 })->name('imprint');
 
 Route::post('/product/addService', [ProductController::class, 'addService'])->name('product.addService');
-
-
-//TODO: Update routing exceptions
-Route::resource('company','App\Http\Controllers\CompanyController')->except(['index']);
-Route::resource('order','App\Http\Controllers\OrderController');
-Route::resource('product','App\Http\Controllers\ProductController');
-Route::resource('product.service','App\Http\Controllers\ServiceController')->shallow()->except(['show']);
+Route::resource('company','App\Http\Controllers\CompanyController')->except(['index','show']);
+Route::resource('order','App\Http\Controllers\OrderController')->except(['show']);
+Route::resource('product','App\Http\Controllers\ProductController')->except(['show']);
+Route::resource('product.service','App\Http\Controllers\ServiceController')->shallow()->except(['create, show']);
