@@ -19,9 +19,9 @@ class OrderController extends Controller
     {
         $possibleProducts = array_map(
             function ($projectNameResult) {
-                return $projectNameResult['ProjectName'];
+                return $projectNameResult['project_name'];
             },
-            Product::select('ProjectName')->distinct()->get()->toArray()
+            Product::select('project_name')->distinct()->get()->toArray()
         );
 
         if (count($possibleProducts) == 0)
@@ -76,8 +76,8 @@ class OrderController extends Controller
     public function store(Request $request)
     {
         $order = new Order;
-        $order->OrderedDate = $request->orderedOn;
-        $order->ReferenceName = $request->referenceName;
+        $order->date_ordered = $request->orderedOn;
+        $order->reference_name = $request->referenceName;
 
         if (!in_array($request->orderState, self::possibleStates)) {
             return response()->json([
@@ -85,7 +85,7 @@ class OrderController extends Controller
             ], 406); //Return not acceptable
         }
 
-        $order->State = $request->orderState;
+        $order->state = $request->orderState;
         try {
             $order->save();
         } catch (QueryException $e) {
@@ -116,13 +116,13 @@ class OrderController extends Controller
                 "Ordered on",
                 "orderedOn",
                 "datetime-local",
-                $order->OrderedDate,
+                $order->date_ordered,
             ),
             new FormEntry(
                 "Reference Name",
                 "referenceName",
                 "select",
-                $order->ReferenceName,
+                $order->reference_name,
                 false,
                 $possibleProducts,
                 "Smarthome "
@@ -131,7 +131,7 @@ class OrderController extends Controller
                 "State",
                 "orderState",
                 "select",
-                $order->State,
+                $order->state,
                 false,
                 self::possibleStates
             )
@@ -142,9 +142,9 @@ class OrderController extends Controller
     public function update(Request $request, Order $order)
     {
         DB::beginTransaction();
-        $order->OrderedDate = $request->orderedOn;
-        $order->ReferenceName = $request->referenceName;
-        $order->State = $request->orderState;
+        $order->date_ordered = $request->orderedOn;
+        $order->reference_name = $request->referenceName;
+        $order->state = $request->orderState;
 
         if (Order::where("id", $order->id)->exists()) {
             try {

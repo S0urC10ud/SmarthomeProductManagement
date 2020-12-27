@@ -47,7 +47,7 @@
 @php
     //Accept incoming standardized format and then reformat
     function getFormattedDate($product){
-        return Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $product->RegisteredOn)->format('jS M. Y H:i:s');
+        return Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $product->registered_on)->format('jS M. Y H:i:s');
     }
 @endphp
 
@@ -57,12 +57,12 @@
         <div class="row justify-content-between" style="margin: 10px 0;">
             @foreach($productData as $product)
                 <div class="col-md-3 controller">
-                    <h3>{{$product->ControllerName}}</h3>
+                    <h3>{{$product->controller_name}}</h3>
                     <div class="controllerContent">
-                        <span>Serial Number: {{$product->SerialNumber}}</span>
+                        <span>Serial Number: {{$product->serial_number}}</span>
                         <span>Registered on: {{getFormattedDate($product)}}</span>
-                        <span>Project: {{$product->ProjectName}}</span>
-                        <span>External address: {{$product->ExternalAddress}}</span>
+                        <span>Project: {{$product->project_name}}</span>
+                        <span>External address: {{$product->external_address}}</span>
                         <span class="serviceNumber">{{count($product->services)}} Services</span>
                         <button onclick="setModalContents({{$product->id}})" data-toggle="modal"
                                 data-target="#detailsModal"><i class="fa fa-eye"></i></button>

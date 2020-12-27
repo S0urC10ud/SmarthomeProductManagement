@@ -17,16 +17,17 @@ class ServiceController extends Controller
             ->with(['productData' => Product::find($productId), 'serviceData' => Product::find($productId)->services]);
     }
 
-    public function store(Request $request){
+    public function store(Request $request)
+    {
         $service = new Service;
-        $service->ServiceName = $request->ServiceName;
-        $service->LicenseNumber = $request->LicenseNr;
-        $service->MaxDate = $request->ValidUntil;
-        $service->Enabled = true;
+        $service->service_name = $request->serviceName;
+        $service->licence_number = $request->licenceNr;
+        $service->max_date = $request->validUntil;
+        $service->enabled = true;
 
         try {
             $service->save();
-            $service->products()->attach($request->ProductId);
+            $service->products()->attach($request->productId);
         } catch (QueryException $e) {
             return response()->json([
                 'errors' => "Failed processing your request - make sure the format is correct and everything is filled in",
@@ -35,18 +36,12 @@ class ServiceController extends Controller
         return redirect()->route('product.index');
     }
 
-    public function destroy(Service $service)
-    {
-        $service->delete();
-        return response()->json([], 202);
-    }
-
-    public function edit(Service $service, bool $previouslyFailed = false)
+    public function edit(string $productId, Service $service, bool $previouslyFailed = false)
     {
         $content = new stdClass();
         $content->title = "Edit a Service";
         $content->method = "PUT";
-        $content->url = route('service.update', $service->id);
+        $content->url = route('product.service.update', [(int)$productId, $service->id]);
         $content->previouslyFailed = $previouslyFailed;
 
         $content->elements = array(
@@ -61,7 +56,7 @@ class ServiceController extends Controller
                 "Service Name",
                 "serviceName",
                 "select",
-                $service->ServiceName,
+                $service->service_name,
                 false,
                 Service::TYPES
             ),
@@ -69,31 +64,31 @@ class ServiceController extends Controller
                 "License-Number",
                 "licenseNumber",
                 "number",
-                $service->LicenseNumber,
+                $service->licence_number,
             ),
             new FormEntry(
                 "Expiry Date",
                 "maxDate",
                 "datetime-local",
-                $service->MaxDate,
+                $service->max_date,
             ),
             new FormEntry(
                 "Enabled",
                 "enabled",
                 "checkbox",
-                $service->Enabled
+                $service->enabled
             )
         );
         return view('manageDataStructure')->with('formStructure', $content);
     }
 
-    public function update(Request $request, Service $service)
+    public function update(string $productId, Request $request, Service $service)
     {
         DB::beginTransaction();
-        $service->ServiceName = $request->serviceName;
-        $service->LicenseNumber = $request->licenseNumber;
-        $service->MaxDate = $request->maxDate;
-        $service->Enabled = $request->enabled == "on";
+        $service->service_name = $request->serviceName;
+        $service->licence_number = $request->licenseNumber;
+        $service->max_date = $request->maxDate;
+        $service->enabled = $request->enabled == "on";
 
         if (Service::where("id", $service->id)->exists()) {
             try {
@@ -106,5 +101,14 @@ class ServiceController extends Controller
             DB::rollBack();
         }
         return redirect()->route('product.index');
+    }
+
+    public function destroy(string $productId, Service $service)
+    {
+        if (count($service->products) == 1)
+            $service->delete();
+        else
+            $service->products()->detach($productId);
+        return response()->json([], 202);
     }
 }

@@ -16,7 +16,7 @@
                     <div class="statistics">
                         <h1 style="font-weight: bold;">{{\App\Models\Product::count()}} Products</h1>
                         <h2><b>{{\App\Models\Service::count()}}</b> Services</h2>
-                        <h2><b>{{\App\Models\Service::where('Enabled',true)->count()}}</b> Enabled</h2>
+                        <h2><b>{{\App\Models\Service::where('enabled',true)->count()}}</b> Enabled</h2>
 
                         <a href="{{route('product.index')}}">
                             <div id="productsAndServicesViewButton">
@@ -30,9 +30,9 @@
 
                     <div class="statistics">
                         <h1 style="font-weight: bold;">{{\App\Models\Order::count()}} Orders</h1>
-                        <h2><b>{{\App\Models\Order::where('State','Not yet ordered')->count()}}</b> Not yet ordered</h2>
-                        <h2><b>{{\App\Models\Order::where('State','Ordered')->count()}}</b> Ordered</h2>
-                        <h2><b>{{\App\Models\Order::where('State','Finished')->count()}}</b> Finished</h2>
+                        <h2><b>{{\App\Models\Order::where('state','Not yet ordered')->count()}}</b> Not yet ordered</h2>
+                        <h2><b>{{\App\Models\Order::where('state','Ordered')->count()}}</b> Ordered</h2>
+                        <h2><b>{{\App\Models\Order::where('state','Finished')->count()}}</b> Finished</h2>
 
                         <a href="{{route('order.index')}}">
                             <div id="ordersViewButton">
@@ -52,11 +52,11 @@
 
                         <div class="listingItem col-md-3 col-12 order-1">
                             <span class="listingItemTitle">Company Name</span><br/>
-                            <span class="listingItemValue">{{$companyData->Name}}</span>
+                            <span class="listingItemValue">{{$companyData->name}}</span>
                         </div>
                         <div class="listingItem col-md-5 col-12 order-2">
                             <span class="listingItemTitle">Company E-Mail</span><br/>
-                            <span class="listingItemValue">{{$companyData->EMailAddress}}</span>
+                            <span class="listingItemValue">{{$companyData->email_address}}</span>
                         </div>
                         <a href="{{route('company.edit',$companyData->id)}}" class="col-md-3 col-6 btn btn-outline-primary btn-container order-last order-md-3">
                             Edit
@@ -66,11 +66,11 @@
 
                         <div class="listingItem col-md-4 col-12 order-5">
                             <span class="listingItemTitle">Contact Firstname</span><br/>
-                            <span class="listingItemValue">{{$companyData->ContactFirstname}}</span>
+                            <span class="listingItemValue">{{$companyData->contact_firstname}}</span>
                         </div>
                         <div class="listingItem col-md-4 col-12 order-6">
                             <span class="listingItemTitle">Contact Lastname</span><br/>
-                            <span class="listingItemValue">{{$companyData->ContactLastname}}</span>
+                            <span class="listingItemValue">{{$companyData->contact_lastname}}</span>
                         </div>
                         <div class="col-md-3 col-6 btn btn-outline-danger btn-container order-7"
                              onclick="deleteEntry('all of your Company information','','{{route('company.destroy',$companyData->id)}}','{{route('dashboard')}}');">

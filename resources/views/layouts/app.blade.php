@@ -155,7 +155,7 @@
     @php
         $company = \App\Models\Company::first();
         if($company!=null)
-            $companyName = $company->Name;
+            $companyName = $company->name;
         else
             $companyName = 'Your-Company-Name';
     @endphp

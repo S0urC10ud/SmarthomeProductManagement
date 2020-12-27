@@ -82,14 +82,14 @@
                     @foreach($orderData as $order)
                         <tr onclick="setSelectedContent(
                         {{$order->id}},
-                            '{{getFormattedDate($order->OrderedDate)}}',
-                            '{{$order->ReferenceName}}',
-                            '{{$order->State}}'
+                            '{{getFormattedDate($order->date_ordered)}}',
+                            '{{$order->reference_name}}',
+                            '{{$order->state}}'
                             );">
                             <th scope="row">{{$order->id}}</th>
-                            <td>{{getFormattedDate($order->OrderedDate)}}</td>
-                            <td>{{$order->ReferenceName}}</td>
-                            <td>{{$order->State}}</td>
+                            <td>{{getFormattedDate($order->date_ordered)}}</td>
+                            <td>{{$order->reference_name}}</td>
+                            <td>{{$order->state}}</td>
                         </tr>
                     @endforeach
                     </tbody>

@@ -22,9 +22,9 @@ class OrderFactory extends Factory
     public function definition()
     {
         return [
-            'OrderedDate' => $this->faker->dateTime,
-            'ReferenceName' => $this->faker->name,
-            'State' => $this->faker->randomElement(['Not yet ordered', 'Ordered', 'Finished'])
+            'date_ordered' => $this->faker->dateTime,
+            'reference_name' => $this->faker->name,
+            'state' => $this->faker->randomElement(['Not yet ordered', 'Ordered', 'Finished'])
         ];
     }
 }

@@ -15,10 +15,10 @@ class CreateServicesTable extends Migration
     {
         Schema::create('services', function (Blueprint $table) {
             $table->id();
-            $table->string("ServiceName");
-            $table->unsignedInteger("LicenseNumber");
-            $table->dateTime("MaxDate");
-            $table->boolean("Enabled");
+            $table->string("service_name");
+            $table->unsignedInteger("licence_number");
+            $table->dateTime("max_date");
+            $table->boolean("enabled");
             $table->timestamps();
         });
     }

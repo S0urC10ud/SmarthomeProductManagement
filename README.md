@@ -26,8 +26,9 @@ Route::post('/product/addService', [ProductController::class, 'addService'])->na
 Route::resource('company','App\Http\Controllers\CompanyController')->except(['index','show']);
 Route::resource('order','App\Http\Controllers\OrderController')->except(['show']);
 Route::resource('product','App\Http\Controllers\ProductController')->except(['show']);
-Route::resource('product.service','App\Http\Controllers\ServiceController')->shallow()->except(['create, show']);
+Route::resource('product.service','App\Http\Controllers\ServiceController')->except(['create, show']);
 ```
+The relationship inside the _product.service_ route is modeled in a nested way to provide an easier way for accessing the product_id in the ServiceController. 
 
 ## Implementation
 The following structure indicates how the Eloquent-ORM-System should be used hierarchically. 
@@ -37,6 +38,7 @@ The following structure indicates how the Eloquent-ORM-System should be used hie
     - Controller-Name
     - Serial-Number (not necessarily unique)
     - Project-Name
+    - Registered on (it is assumed, that a product can be registered before or after the dataset has been created - otherwise created_at could be used. Hence, this is the default value.)
     - **Services**
         - ID
         - Service-Name

@@ -16,11 +16,11 @@ class ProductController extends Controller
     private function requestToOProduct(Request $request, Product $product = null): Product{
         if($product===null)
             $product = new Product;
-        $product->ControllerName = $request->controllerName;
-        $product->SerialNumber = $request->serialNumber;
-        $product->RegisteredOn = $request->registeredOn;
-        $product->ProjectName = $request->projectName;
-        $product->ExternalAddress = $request->externalAddress;
+        $product->controller_name = $request->controllerName;
+        $product->serial_number = $request->serialNumber;
+        $product->registered_on = $request->registeredOn;
+        $product->project_name = $request->projectName;
+        $product->external_address = $request->externalAddress;
         return $product;
     }
 
@@ -29,7 +29,7 @@ class ProductController extends Controller
     }
 
     public function addService(Request $request){
-        $serviceToAdd = Service::where('LicenseNumber',$request->licenceNumber)->first();
+        $serviceToAdd = Service::where('licence_number',$request->licenceNumber)->first();
 
         if($serviceToAdd==null || $serviceToAdd->id == null)
             return response()->json([
@@ -108,31 +108,31 @@ class ProductController extends Controller
                 "Controller Name",
                 "controllerName",
                 "text",
-                $product->ControllerName
+                $product->controller_name
             ),
             new FormEntry(
                 "Serial Number",
                 "serialNumber",
                 "number",
-                $product->SerialNumber
+                $product->serial_number
             ),
             new FormEntry(
                 "Registered on",
                 "registeredOn",
                 "datetime-local",
-                $product->RegisteredOn,
+                $product->registered_on,
             ),
             new FormEntry(
                 "Project Name",
                 "projectName",
                 "text",
-                $product->ProjectName
+                $product->project_name
             ),
             new FormEntry(
                 "External IP Address",
                 "externalAddress",
                 "text",
-                $product->ExternalAddress
+                $product->external_address
             )
         );
         return view('manageDataStructure')->with('formStructure', $content);
@@ -159,6 +159,7 @@ class ProductController extends Controller
 
     public function destroy(Product $product)
     {
+        $product->services()->detach();
         $product->delete();
         return response()->json([], 202);
     }

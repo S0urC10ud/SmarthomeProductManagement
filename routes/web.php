@@ -29,4 +29,4 @@ Route::post('/product/addService', [ProductController::class, 'addService'])->na
 Route::resource('company','App\Http\Controllers\CompanyController')->except(['index','show']);
 Route::resource('order','App\Http\Controllers\OrderController')->except(['show']);
 Route::resource('product','App\Http\Controllers\ProductController')->except(['show']);
-Route::resource('product.service','App\Http\Controllers\ServiceController')->shallow()->except(['create, show']);
+Route::resource('product.service','App\Http\Controllers\ServiceController')->except(['create, show']);

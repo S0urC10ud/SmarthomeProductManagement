@@ -73,8 +73,8 @@
                                    onchange="refreshDateTime('{{$formEntry->getRequestName()}}')"
                                    id="{{$formEntry->getRequestName()}}Date"/>
                             <script>
-                                    $("#{{$formEntry->getRequestName()}}Date").val('{{$formEntry->getCurrentValue() != null ? Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $formEntry->getCurrentValue())->format('Y-m-d') :''}}');
-                                    //would glitch in Firefox with directly setting the date-value
+                                $("#{{$formEntry->getRequestName()}}Date").val('{{$formEntry->getCurrentValue() != null ? Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $formEntry->getCurrentValue())->format('Y-m-d') :''}}');
+                                //would glitch in Firefox with directly setting the date-value
                             </script>
                             <input type="time"
                                    min="0:00"
@@ -92,9 +92,14 @@
                 <div
                     class="btn btn-danger"
                     style="cursor:pointer;"
-                    onclick="document.referrer.includes('product') || document.referrer.includes('service') ?
-                        window.location.href='{{route('product.index')}}'
-                        : window.location.href='{{route('order.index')}}'">
+                    onclick="window.location.href=
+                    @if(str_contains(url()->current(),'product'))
+                        '{{route('product.index')}}'
+                    @elseif(str_contains(url()->current(),'order'))
+                        '{{route('order.index')}}'
+                    @else
+                        '{{route('dashboard')}}'
+                    @endif">
                     Cancel
                 </div> <!--A button would send the form-->
                 <button type="submit" class="btn btn-primary">

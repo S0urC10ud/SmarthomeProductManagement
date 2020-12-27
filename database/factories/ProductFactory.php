@@ -22,11 +22,11 @@ class ProductFactory extends Factory
     public function definition()
     {
         return [
-            'ControllerName' => "Controller of ". $this->faker->name,
-            'ProjectName' => $this->faker->name,
-            'SerialNumber' => $this->faker->unique()->numberBetween(0, 10000000),
-            'RegisteredOn' => $this->faker->dateTime,
-            'ExternalAddress' => $this->faker->ipv4
+            'controller_name' => "Controller of ". $this->faker->name,
+            'project_name' => $this->faker->name,
+            'serial_number' => $this->faker->unique()->numberBetween(0, 10000000),
+            'registered_on' => $this->faker->dateTime,
+            'external_address' => $this->faker->ipv4
         ];
     }
 }

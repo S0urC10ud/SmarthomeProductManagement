@@ -22,10 +22,10 @@ class ServiceFactory extends Factory
     public function definition()
     {
         return [
-            'ServiceName' => $this->faker->randomElement(Service::TYPES),
-            'LicenseNumber' => $this->faker->unique()->numberBetween(0,10000000),
-            'MaxDate' => now(),
-            'Enabled' => $this->faker->boolean()
+            'service_name' => $this->faker->randomElement(Service::TYPES),
+            'licence_number' => $this->faker->unique()->numberBetween(0,10000000),
+            'max_date' => now(),
+            'enabled' => $this->faker->boolean()
         ];
     }
 }

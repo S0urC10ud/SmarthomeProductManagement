@@ -15,9 +15,9 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->dateTime("OrderedDate");
-            $table->string("ReferenceName");
-            $table->enum("State", array('Not yet ordered', 'Ordered', 'Finished'));
+            $table->dateTime("date_ordered");
+            $table->string("reference_name");
+            $table->enum("state", array('Not yet ordered', 'Ordered', 'Finished'));
             $table->timestamps();
         });
     }

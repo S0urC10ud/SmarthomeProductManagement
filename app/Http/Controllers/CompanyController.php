@@ -57,10 +57,10 @@ class CompanyController extends Controller
             return response()->json(["Error" => "Only one Company can exist"], 406);
 
         $company = new Company;
-        $company->Name = $request->name;
-        $company->EMailAddress = $request->emailAddress;
-        $company->ContactFirstname = $request->contactFirstname;
-        $company->ContactLastname = $request->contactLastname;
+        $company->name = $request->name;
+        $company->email_address = $request->emailAddress;
+        $company->contact_firstname = $request->contactFirstname;
+        $company->contact_lastname = $request->contactLastname;
         try {
             $company->save();
         } catch (QueryException $e) {
@@ -82,25 +82,25 @@ class CompanyController extends Controller
                 "Company Name",
                 "name",
                 "text",
-                $company->Name
+                $company->name
             ),
             new FormEntry(
                 "E-Mail Address",
                 "emailAddress",
                 "email",
-                $company->EMailAddress
+                $company->email_address
             ),
             new FormEntry(
                 "Firstname of a contact person",
                 "contactFirstname",
                 "text",
-                $company->ContactFirstname
+                $company->contact_firstname
             ),
             new FormEntry(
                 "Lastname of a contact person",
                 "contactLastname",
                 "text",
-                $company->ContactLastname
+                $company->contact_lastname
             )
         );
 
@@ -109,10 +109,10 @@ class CompanyController extends Controller
     public function update(Request $request, Company $company)
     {
         DB::beginTransaction();
-        $company->Name = $request->name;
-        $company->EMailAddress = $request->emailAddress;
-        $company->ContactFirstname = $request->contactFirstname;
-        $company->ContactLastname = $request->contactLastname;
+        $company->name = $request->name;
+        $company->email_address = $request->emailAddress;
+        $company->contact_firstname = $request->contactFirstname;
+        $company->contact_lastname = $request->contactLastname;
 
         if (Company::where("id", $company->id)->exists()) {
             try {
