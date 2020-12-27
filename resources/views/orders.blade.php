@@ -48,8 +48,8 @@
 
 @php
     //Accept incoming standardized format and then reformat
-    function getFormattedDate($order){
-        return Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $order->OrderedDate)->format('jS M Y H:i:s');
+    function getFormattedDate($date){
+        return Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $date)->format('jS M Y H:i:s');
     }
 @endphp
 
@@ -82,12 +82,12 @@
                     @foreach($orderData as $order)
                         <tr onclick="setSelectedContent(
                         {{$order->id}},
-                            '{{getFormattedDate($order)}}',
+                            '{{getFormattedDate($order->OrderedDate)}}',
                             '{{$order->ReferenceName}}',
                             '{{$order->State}}'
                             );">
                             <th scope="row">{{$order->id}}</th>
-                            <td>{{getFormattedDate($order)}}</td>
+                            <td>{{getFormattedDate($order->OrderedDate)}}</td>
                             <td>{{$order->ReferenceName}}</td>
                             <td>{{$order->State}}</td>
                         </tr>

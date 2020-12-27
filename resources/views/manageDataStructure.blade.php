@@ -17,6 +17,13 @@
             }
         </script>
     @endif
+    <script>
+        function refreshDateTime(elementId) {
+            let expiryDate = new Date($(`#${elementId}Date`).val());
+            let expiryTime = $(`#${elementId}Time`).val();
+            $(`#${elementId}`).val(`${expiryDate.getFullYear()}-${expiryDate.getMonth() + 1}-${expiryDate.getDate()}T${expiryTime}`);
+        }
+    </script>
 @endsection
 
 @section('content')
@@ -51,25 +58,45 @@
                                name="{{$formEntry->getRequestName()}}"
                                id="{{$formEntry->getRequestName()}}"
                                @if($formEntry->getType() != "checkbox")
-                                value="{{$formEntry->getCurrentValue()}}"
-                                class='form-control'
+                               value="{{$formEntry->getCurrentValue()}}"
+                               class='form-control'
                                @endif
+                               @if($formEntry->getType() == "datetime-local")
+                               style="display: none !important;"
+                            @endif
                             {{$formEntry->getIsReadOnly() ? "readonly" : ""}}
                             {{$formEntry->getType() == "checkbox" && $formEntry->getCurrentValue()==1 ? "checked" : ""}}
                         />
                         @if($formEntry->getType() == "datetime-local")
-                            <small class="form-text text-muted">Hint: Chrome provides the best interactive
-                                datetime-chooser!</small>
+                            <input type="date"
+                                   class='form-control'
+                                   onchange="refreshDateTime('{{$formEntry->getRequestName()}}')"
+                                   id="{{$formEntry->getRequestName()}}Date"/>
+                            <script>
+                                    $("#{{$formEntry->getRequestName()}}Date").val('{{$formEntry->getCurrentValue() != null ? Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $formEntry->getCurrentValue())->format('Y-m-d') :''}}');
+                                    //would glitch in Firefox with directly setting the date-value
+                            </script>
+                            <input type="time"
+                                   min="0:00"
+                                   max="24:00"
+                                   step="any"
+                                   class='form-control'
+                                   value="{{$formEntry->getCurrentValue() != null ? Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $formEntry->getCurrentValue())->format('H:i:s') :''}}"
+                                   onchange="refreshDateTime('{{$formEntry->getRequestName()}}')"
+                                   id="{{$formEntry->getRequestName()}}Time"/>
                         @endif
                     @endif
                 </div>
             @endforeach
             <div class="row justify-content-between" style="margin:0;">
-                <button
+                <div
                     class="btn btn-danger"
-                    onclick="location.href=document.referrer;">
+                    style="cursor:pointer;"
+                    onclick="document.referrer.includes('product') || document.referrer.includes('service') ?
+                        window.location.href='{{route('product.index')}}'
+                        : window.location.href='{{route('order.index')}}'">
                     Cancel
-                </button>
+                </div> <!--A button would send the form-->
                 <button type="submit" class="btn btn-primary">
                     {{$formStructure->method == "PUT" ? "Edit" : "Create"}}
                 </button>

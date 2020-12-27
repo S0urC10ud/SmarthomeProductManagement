@@ -6,7 +6,9 @@
 }
 
 .container{
-    padding: 2.5vh !important;
+    padding: 1.2vh 4vh 1.1vh 4vh !important;
+    border-radius: 10px;
+
 }
 
 #orderButtonContainer {

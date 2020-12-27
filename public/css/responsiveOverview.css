@@ -33,6 +33,7 @@
 .listingItemValue {
     font-size: 1.5rem;
     margin-left: .5rem;
+    white-space: nowrap !important;
 }
 
 .btn-container {

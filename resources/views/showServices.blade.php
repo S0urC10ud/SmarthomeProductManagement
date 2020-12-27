@@ -1,9 +1,17 @@
 @php
     //Accept incoming standardized format and then reformat
-    function getFormattedDate($product){
-        return Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $product->RegisteredOn)->format('jS M. Y H:i:s');
+    function getFormattedDate($date){
+        return Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $date)->format('jS M. Y H:i:s');
     }
 @endphp
+<script>
+    function refreshDateTime() {
+        let expiryDate = new Date($("#validUntilDate").val());
+        let expiryTime = $("#validUntilTime").val();
+        $("#validUntil").val(`${expiryDate.getFullYear()}-${expiryDate.getMonth()+1}-${expiryDate.getDate()}T${expiryTime}`);
+    }
+</script>
+
 
 <div class="modal-header">
     <h5 class="modal-title" id="dialogTitle">Details
@@ -15,7 +23,7 @@
 <div class="modal-body">
     <div class="controllerDetails">
         <span><b>Serial Number:</b> {{$productData->SerialNumber}}</span>
-        <span><b>Registered on:</b> {{getFormattedDate($productData)}}</span>
+        <span><b>Registered on:</b> {{getFormattedDate($productData->RegisteredOn)}}</span>
         <span><b>Project:</b> {{$productData->ProjectName}}</span>
         <span><b>External address:</b> {{$productData->ExternalAddress}}</span>
 
@@ -70,7 +78,7 @@
                     </div>
                     <span><b>Enabled:</b> {{$service->Enabled ? 'true' : 'false'}}</span>
                     <span><b>Licence Nr.:</b> {{$service->LicenseNumber}}</span>
-                    <span><b>Valid until:</b> {{$service->MaxDate}}</span>
+                    <span><b>Valid until:</b> {{getFormattedDate($service->MaxDate)}}</span>
                 </div>
 
             </div>
@@ -92,10 +100,11 @@
                     <input id="licenseNr" name="LicenseNr" type="number" class="form-control"/>
                 </div>
                 <div class="form-group" style="width: 50%; display: inline-block;">
-                    <label for="validUntil">Valid until</label>
-                    <input id="validUntil" name="ValidUntil" type="datetime-local" value="{{now()->add('P7D')}}" class="form-control"/>
-                    <small class="form-text text-muted">Hint: Chrome provides the best interactive
-                        datetime-chooser!</small>
+                    <label for="validUntilDate">Valid until</label>
+                    <input id="validUntilDate" onchange="refreshDateTime()" type="date" class="form-control"/>
+                    <input id="validUntilTime" onchange="refreshDateTime()" type="time" value="00:00" class="form-control"/>
+
+                    <input id="validUntil" name="ValidUntil" type="datetime-local" class="form-control" style="display: none;"/>
                 </div>
                 <button class="btn btn-primary">Add ></button>
             </form>
@@ -107,7 +116,8 @@
                     <label for="name">Licence Number</label>
                     <select name="licenceNumber" id="name" class="form-control">
                         @foreach(\App\Models\Service::all() as $service)
-                            <option value="{{$service->LicenseNumber}}">{{$service->LicenseNumber . ' - ' . $service->ServiceName}}</option>
+                            <option
+                                value="{{$service->LicenseNumber}}">{{$service->LicenseNumber . ' - ' . $service->ServiceName}}</option>
                         @endforeach
                     </select>
                 </div>
