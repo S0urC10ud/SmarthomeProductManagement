@@ -17,7 +17,7 @@ class CreateProductsTable extends Migration
             $table->id();
             $table->string("controller_name");
             $table->unsignedInteger("serial_number");
-            $table->dateTime("registered_on"); //was in the PDF but not in the XML
+            $table->dateTime("registered_on")->default(now()); //was in the PDF but not in the XML
             $table->string("project_name");
             $table->string("external_address"); //was in the PDF but not in the XML
             $table->timestamps();

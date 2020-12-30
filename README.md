@@ -19,45 +19,60 @@ To provide a  quick overview over which functionalities are directly embedded in
 Route::get('/', function () {
     return view('dashboard')->with('companyData', Company::first());
 })->name('dashboard');
+
 Route::get('/imprint', function () {
     return view('imprint');
 })->name('imprint');
-Route::post('/product/addService', [ProductController::class, 'addService'])->name('product.addService');
-Route::resource('company','App\Http\Controllers\CompanyController')->except(['index','show']);
+
+//For assignment of an already existing service to another product - however: Make sure a service with the same licence number cannot be assigned twice to the same product
+Route::post('/product/associateService', [ProductController::class, 'associateService'])->name('product.associateService'); 
+//For removing an assignment, product.service.destroy can be used as the service will only be deleted for the queried product-id
+
+//Index and show not needed - there is only one instance shown on the dashboard
+//On company.destroy, everything should be deleted as all of the data belongs to a company
+Route::resource('company','App\Http\Controllers\CompanyController')->except(['index','show']); 
+//Show is not needed as everything is displayed on the index page and the details-view can be accessed via JS
 Route::resource('order','App\Http\Controllers\OrderController')->except(['show']);
+//Show is redundant as it can be examined on the index page (as well as on the services.index-page for the assignment of the relationship)
 Route::resource('product','App\Http\Controllers\ProductController')->except(['show']);
-Route::resource('product.service','App\Http\Controllers\ServiceController')->except(['create, show']);
+//The creation and listing directly takes place at the index-page of the service (so no create is needed - store, however, is needed)
+Route::resource('product.service','App\Http\Controllers\ServiceController')->except(['create, show']); 
 ```
 The relationship inside the _product.service_ route is modeled in a nested way to provide an easier way for accessing the product_id in the ServiceController. 
 
 ## Design-Adaptations for adding Services
-Since services can directly be added to Products/Controllers in the Details-View, a combobox is obsolete regarding the implemented design.
+Since services can directly be added to Products/Controllers in the Details-View, a combobox is obsolete regarding the implemented design. However, a combobox is used for referencing projects of Products in the Views for creating and editing Orders.
 
 ## Implementation
-The following structure indicates how the Eloquent-ORM-System should be used hierarchically. 
+The following structure indicates how the Eloquent-ORM-System should be used to store the model Data hierarchically. 
+
+_Hint: The applied naming-conventions can be seen at the bottom of the document._
 
  - **Products**
-    - ID
-    - Controller-Name
-    - Serial-Number (not necessarily unique)
-    - Project-Name
-    - Registered on (it is assumed, that a product can be registered before or after the dataset has been created - otherwise created_at could be used. Hence, this is the default value.)
-    - **Services**
-        - ID
-        - Service-Name
-        - Licence-Number
-        - Max-Date
-        - Enabled-Flag
+    - id:BigInt
+    - controller_name:String
+    - serial_number: UnsignedInteger (not necessarily unique - described later - short version: different company standards)
+    - project_name: String (is later used to reference orders with projects)
+    - registered_on:DateTime (it is assumed, that a product can be registered before or after the dataset has been created - otherwise created_at could be used. Hence, this is the default value.)
+    - **Services** (belongs to at least one product)
+        - id: BigInt
+        - service_name: String
+        - licence_number: UnsignedInteger
+        - max_date: DateTime
+        - enabled: Boolean
+ - Service-Product M-to-N-Relationship Table (not a Model - reason for Many-To-Many described later)
+    - service_id: FK for Products->id
+    - product_id: FK for Services->id
  - **Orders**
-    - Order-Number (unique --> id)
-    - Ordered-Date
-    - Reference-Name
-    - State-String (possible values: `Not yet ordered`, `Ordered`, `Finished`)
- - **Companies**
-    - Company-Name
-    - Company-EMail-Address
-    - _Contact-Firstname_
-    - _Contact-Lastname_
+    - id: BigInt (represents the Order-Number)
+    - date_ordered: DateTime
+    - reference_name: String
+    - state:Enum (possible values: `Not yet ordered`, `Ordered`, `Finished`)
+ - **Companies** (only one instance can exist - handled by CompanyController)
+    - name: String
+    - email_address: String
+    - _contact_firstname_:String
+    - _contact_lastname_:String
     
 The **bold** statements are model classes and the _italic_ ones show that there is only one contact person associated with each company.
 
@@ -68,7 +83,7 @@ https://laravel.com/docs/8.x/eloquent-relationships#one-to-many
 This should result in the ability to use the relationship in the DB.
 
 ### Why is the Licence-Number not the PK of Services?
-It is assumed that different companies could refer to different Services in various ways so that the same licence number could **in the future** be used for multiple services. Thus, an ID, which is definitely unique, is used.
+It is assumed, that different companies could refer to different Services in various ways so that the same licence number could **in the future** be used for multiple services. Thus, an ID, which is definitely unique, is used.
 
 ### Why is a Many-To-Many-Relationship used for Products and Services?
 Imagine a customer having many sites, which use the same licences and are all moddeled as different controllers. Hence, it is convenient to be able to assign excactly the same Services to multiple Products as well - it can be disabled for all of them and the expiry-date will be synchronized easilly.

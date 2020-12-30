@@ -21,6 +21,11 @@ class ServiceController extends Controller
     {
         $service = new Service;
         $service->service_name = $request->serviceName;
+        if (Product::find($request->productId)->services->where('licence_number',$request->licenceNr)->count()!=0)
+            return response()->json([
+                'errors' => "A service with the same licence-number already exists on the desired controller",
+            ], 406);
+
         $service->licence_number = $request->licenceNr;
         $service->max_date = $request->validUntil;
         $service->enabled = true;

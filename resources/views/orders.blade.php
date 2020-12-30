@@ -80,7 +80,8 @@
                     </thead>
                     <tbody>
                     @foreach($orderData as $order)
-                        <tr onclick="setSelectedContent(
+                        <tr class="{{$order->state == "Finished" ? "table-success" : ""}}"
+                            onclick="setSelectedContent(
                         {{$order->id}},
                             '{{getFormattedDate($order->date_ordered)}}',
                             '{{$order->reference_name}}',

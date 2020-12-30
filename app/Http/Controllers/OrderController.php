@@ -77,6 +77,10 @@ class OrderController extends Controller
     {
         $order = new Order;
         $order->date_ordered = $request->orderedOn;
+        if ($request->referenceName != "New unknown product" && !Product::where('project_name', $request->referenceName)->exists())
+            return response()->json([
+                'errors' => "Not an existing project",
+            ], 406); //Return not acceptable
         $order->reference_name = $request->referenceName;
 
         if (!in_array($request->orderState, self::possibleStates)) {
@@ -84,6 +88,7 @@ class OrderController extends Controller
                 'errors' => "Not a real possibleState",
             ], 406); //Return not acceptable
         }
+
 
         $order->state = $request->orderState;
         try {
@@ -145,6 +150,11 @@ class OrderController extends Controller
         $order->date_ordered = $request->orderedOn;
         $order->reference_name = $request->referenceName;
         $order->state = $request->orderState;
+
+        if ($request->referenceName != "New unknown product" && !Product::where('project_name', $request->referenceName)->exists())
+            return response()->json([
+                'errors' => "Not an existing project",
+            ], 406); //Return not acceptable
 
         if (Order::where("id", $order->id)->exists()) {
             try {

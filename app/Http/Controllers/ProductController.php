@@ -28,8 +28,13 @@ class ProductController extends Controller
         return view('productsAndServices')->with('productData',Product::all());
     }
 
-    public function addService(Request $request){
+    public function associateService(Request $request){
         $serviceToAdd = Service::where('licence_number',$request->licenceNumber)->first();
+
+        if (Product::find($request->productId)->services->where('licence_number',$request->licenceNumber)->count()!=0)
+            return response()->json([
+                'errors' => "A service with the same licence-number already exists on the desired controller",
+            ], 406);
 
         if($serviceToAdd==null || $serviceToAdd->id == null)
             return response()->json([

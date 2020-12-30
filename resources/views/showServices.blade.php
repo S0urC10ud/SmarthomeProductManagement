@@ -108,7 +108,7 @@
                 <button class="btn btn-primary">Add ></button>
             </form>
             <h5>Associate a Service</h5>
-            <form action="{{route('product.addService')}}" method="POST">
+            <form action="{{route('product.associateService')}}" method="POST">
                 @csrf
                 <input type="hidden" name="productId" value="{{$productData->id}}">
                 <div class="form-group">
