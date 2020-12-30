@@ -39,7 +39,7 @@
 
         window.onload = () => {
             if (Cookies.get('hasSeenFirstUsageInfo') == null) {
-                $('#firstUsageInfo').querySelector('sl-alert').show();
+                document.querySelector('sl-alert').show();
                 Cookies.set('hasSeenFirstUsageInfo', true, {expires: 4000, sameSite: 'strict'}); //Expiry cannot be infinity --> many days in the future
             }
         };
