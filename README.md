@@ -40,6 +40,10 @@ Route::resource('product.service','App\Http\Controllers\ServiceController')->exc
 ```
 The relationship inside the _product.service_ route is modeled in a nested way to provide an easier way for accessing the product_id in the ServiceController. 
 
+### Remark: Capitalizing the Route "AssociateService"
+According to the used naming conventions, `associateService` should be written in `cammelCase` (not `PascalCase`). This is why it is written in this way in the route itself. 
+
+However, because the contracting entity (Dipl.-Ing. Georg Ungerböck) insists on using `PascalCase` for naming methods, `ProductController.AssociateService()` has been named this way.
 ## Design-Adaptations for adding Services
 Since services can directly be added to Products/Controllers in the Details-View, a combobox is obsolete regarding the implemented design. However, a combobox is used for referencing projects of Products in the Views for creating and editing Orders.
 
