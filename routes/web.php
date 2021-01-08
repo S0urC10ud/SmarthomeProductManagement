@@ -25,7 +25,7 @@ Route::get('/imprint', function () {
     return view('imprint');
 })->name('imprint');
 
-Route::post('/product/associateService', [ProductController::class, 'associateService'])->name('product.associateService');
+Route::post('/product/associate-service', [ProductController::class, 'AssociateService'])->name('product.associateService');
 Route::resource('company','App\Http\Controllers\CompanyController')->except(['index','show']);
 Route::resource('order','App\Http\Controllers\OrderController')->except(['show']);
 Route::resource('product','App\Http\Controllers\ProductController')->except(['show']);

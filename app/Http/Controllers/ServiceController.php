@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\FormEntry;
 use App\Models\Product;
 use App\Models\Service;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use stdClass;
@@ -24,6 +25,11 @@ class ServiceController extends Controller
         if (Product::find($request->productId)->services->where('licence_number',$request->licenceNr)->count()!=0)
             return response()->json([
                 'errors' => "A service with the same licence-number already exists on the desired controller",
+            ], 406);
+
+        if($request->validUntil==null)
+            return response()->json([
+                'errors' => "Expiry date/time may not be null",
             ], 406);
 
         $service->licence_number = $request->licenceNr;

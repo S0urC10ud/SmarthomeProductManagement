@@ -1,10 +1,6 @@
 @extends('layouts.app')
 @section('title','Orders')
 
-@section('customStyles')
-    <link rel="stylesheet" href="/css/manageDataStructure.css"/>
-@endsection
-
 @section('customScripts')
     @if($formStructure->previouslyFailed)
         <script>
@@ -24,6 +20,10 @@
             $(`#${elementId}`).val(`${expiryDate.getFullYear()}-${expiryDate.getMonth() + 1}-${expiryDate.getDate()}T${expiryTime}`);
         }
     </script>
+@endsection
+
+@section('customStyles')
+    <link rel="stylesheet" href="/css/manageDataStructure.css"/>
 @endsection
 
 @section('content')

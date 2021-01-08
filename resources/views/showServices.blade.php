@@ -4,14 +4,6 @@
         return Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $date)->format('jS M. Y H:i:s');
     }
 @endphp
-<script>
-    function refreshDateTime() {
-        let expiryDate = new Date($("#validUntilDate").val());
-        let expiryTime = $("#validUntilTime").val();
-        $("#validUntil").val(`${expiryDate.getFullYear()}-${expiryDate.getMonth()+1}-${expiryDate.getDate()}T${expiryTime}`);
-    }
-</script>
-
 
 <div class="modal-header">
     <h5 class="modal-title" id="dialogTitle">Details
@@ -125,3 +117,11 @@
         </div>
     </div>
 </div>
+
+<script>
+    function refreshDateTime() {
+        let expiryDate = new Date($("#validUntilDate").val());
+        let expiryTime = $("#validUntilTime").val();
+        $("#validUntil").val(`${expiryDate.getFullYear()}-${expiryDate.getMonth()+1}-${expiryDate.getDate()}T${expiryTime}`);
+    }
+</script>

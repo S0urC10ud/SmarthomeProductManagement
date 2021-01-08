@@ -9,79 +9,6 @@
 
     <title>SPM - @yield('title','')</title>
 
-
-    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
-    <link rel="stylesheet"
-          href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.0.0-beta.24/dist/shoelace/shoelace.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <style>
-        .nav-link {
-            cursor: pointer;
-            color: #d4d4d4 !important;
-            font-weight: normal;
-            transition-duration: .5s;
-        }
-
-        .nav-link:hover {
-            color: white !important;
-            text-decoration: underline !important;
-            transition-duration: .6s;
-        }
-
-        #footer {
-            position: relative;
-            margin-top: -3em;
-            height: 3em;
-            clear: both;
-            line-height: 3em;
-            vertical-align: center;
-        }
-
-        #wrap {
-            min-height: 100vh;
-        }
-
-        #main {
-            overflow: auto;
-            padding-bottom: 5em;
-        }
-
-        /*Opera Footer Fix*/
-        body:before { /* thanks to Maleika (Kohoutec)*/
-            content: "";
-            height: 100%;
-            float: left;
-            width: 0;
-            margin-top: -32767px; /* thank you Erik J - negate effect of float*/
-        }
-
-        body {
-            background-color: #EFEFEF !important;
-        }
-
-        .short-title {
-            display: none;
-        }
-
-        @media (max-width: 500px) {
-            .short-title {
-                display: inline-block;
-            }
-
-            .full-title {
-                display: none;
-            }
-        }
-
-        .active {
-            font-weight: bold;
-            color: white !important;
-        }
-    </style>
-    @section('customStyles')
-    @show
-
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script src="/js/deleteEntry.js"></script>
@@ -99,10 +26,17 @@
     @section('customScripts')
     @show
 
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.0.0-beta.24/dist/shoelace/shoelace.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/app.css">
+    @section('customStyles')
+    @show
 </head>
 <body>
-
-
 <div id="wrap">
     <div id="main">
         @section('header')

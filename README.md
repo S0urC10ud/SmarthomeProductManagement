@@ -25,7 +25,7 @@ Route::get('/imprint', function () {
 })->name('imprint');
 
 //For assignment of an already existing service to another product - however: Make sure a service with the same licence number cannot be assigned twice to the same product
-Route::post('/product/associateService', [ProductController::class, 'associateService'])->name('product.associateService'); 
+Route::post('/product/associate-service', [ProductController::class, 'AssociateService'])->name('product.associateService'); 
 //For removing an assignment, product.service.destroy can be used as the service will only be deleted for the queried product-id
 
 //Index and show not needed - there is only one instance shown on the dashboard

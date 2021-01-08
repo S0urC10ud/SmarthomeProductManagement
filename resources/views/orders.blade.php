@@ -1,11 +1,6 @@
 @extends('layouts.app')
 @section('title','Orders')
 
-@section('customStyles')
-    <link rel="stylesheet" href="/css/orders.css"/>
-    <link rel="stylesheet" href="/css/responsiveOverview.css"/>
-@endsection
-
 @section('customScripts')
     <script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
     <script>
@@ -44,6 +39,11 @@
             }
         };
     </script>
+@endsection
+
+@section('customStyles')
+    <link rel="stylesheet" href="/css/orders.css"/>
+    <link rel="stylesheet" href="/css/responsiveOverview.css"/>
 @endsection
 
 @php

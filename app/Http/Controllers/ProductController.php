@@ -28,7 +28,7 @@ class ProductController extends Controller
         return view('productsAndServices')->with('productData',Product::all());
     }
 
-    public function associateService(Request $request){
+    public function AssociateService(Request $request){
         $serviceToAdd = Service::where('licence_number',$request->licenceNumber)->first();
 
         if (Product::find($request->productId)->services->where('licence_number',$request->licenceNumber)->count()!=0)
