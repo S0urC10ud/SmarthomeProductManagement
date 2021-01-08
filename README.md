@@ -80,11 +80,13 @@ _Hint: The applied naming-conventions can be seen at the bottom of the document.
     
 The **bold** statements are model classes and the _italic_ ones show that there is only one contact person associated with each company.
 
-### Details for the Model
+### Details regarding the Model
 The following tutorial is used to model the **Many-To-Many-Relationship** regarding **Products** and **Services** (by using Eloquent):
 https://laravel.com/docs/8.x/eloquent-relationships#one-to-many
 
 This should result in the ability to use the relationship in the DB.
+
+The state of an order can also be `Not yet ordered` because it is assumed, that in reality there might be certain days on which ordering items for ones SmartHome might not be possible. This especially holds true regarding local retailers.
 
 ### Why is the Licence-Number not the PK of Services?
 It is assumed, that different companies could refer to different Services in various ways so that the same licence number could **in the future** be used for multiple services. Thus, an ID, which is definitely unique, is used.
