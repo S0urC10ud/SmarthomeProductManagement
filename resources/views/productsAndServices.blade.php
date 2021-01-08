@@ -54,7 +54,7 @@
 @section('content')
     <!-- Default Content -->
     <div class="container">
-        <div class="row justify-content-between" style="margin: 10px 0;">
+        <div class="row justify-content-around" style="margin: 10px 0;">
             @foreach($productData as $product)
                 <div class="col-md-3 controller">
                     <h3>{{$product->controller_name}}</h3>
