@@ -49,11 +49,11 @@ The following structure indicates how the Eloquent-ORM-System should be used to 
 _Hint: The applied naming-conventions can be seen at the bottom of the document._
 
  - **Products**
-    - id:BigInt
-    - controller_name:String
+    - id: BigInt
+    - controller_name: String
     - serial_number: UnsignedInteger (not necessarily unique - described later - short version: different company standards)
     - project_name: String (is later used to reference orders with projects)
-    - registered_on:DateTime (it is assumed, that a product can be registered before or after the dataset has been created - otherwise created_at could be used. Hence, this is the default value.)
+    - registered_on: DateTime (it is assumed, that a product can be registered before or after the dataset has been created - otherwise created_at could be used. Hence, this is the default value.)
     - **Services** (belongs to at least one product)
         - id: BigInt
         - service_name: String
@@ -67,12 +67,12 @@ _Hint: The applied naming-conventions can be seen at the bottom of the document.
     - id: BigInt (represents the Order-Number)
     - date_ordered: DateTime
     - reference_name: String
-    - state:Enum (possible values: `Not yet ordered`, `Ordered`, `Finished`)
+    - state: Enum (possible values: `Not yet ordered`, `Ordered`, `Finished`)
  - **Companies** (only one instance can exist - handled by CompanyController)
     - name: String
     - email_address: String
-    - _contact_firstname_:String
-    - _contact_lastname_:String
+    - _contact_firstname_: String
+    - _contact_lastname_: String
     
 The **bold** statements are model classes and the _italic_ ones show that there is only one contact person associated with each company.
 
